@@ -1,0 +1,1408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Protocol · 7-Day Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --bg: #FAFAF7;
+  --bg-card: #FFFFFF;
+  --bg-soft: #F5F5F0;
+  --ink: #0F172A;
+  --ink-soft: #475569;
+  --ink-mute: #94A3B8;
+  --line: #E2E8F0;
+  --line-soft: #F1F5F9;
+
+  --green: #16A34A;          --green-bright: #22C55E;      --green-soft: #DCFCE7;
+  --orange: #EA580C;         --orange-bright: #F97316;     --orange-soft: #FFEDD5;
+  --yellow: #CA8A04;         --yellow-bright: #FACC15;     --yellow-soft: #FEF9C3;
+  --pink: #DB2777;           --pink-bright: #EC4899;       --pink-soft: #FCE7F3;
+  --blue: #0284C7;           --blue-bright: #0EA5E9;       --blue-soft: #E0F2FE;
+  --purple: #9333EA;         --purple-bright: #A855F7;     --purple-soft: #F3E8FF;
+  --red: #DC2626;            --red-bright: #EF4444;        --red-soft: #FEE2E2;
+  --teal: #0D9488;           --teal-bright: #14B8A6;       --teal-soft: #CCFBF1;
+
+  --serif: 'Instrument Serif', Georgia, serif;
+  --sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+
+  --r-sm: 8px;
+  --r-md: 14px;
+  --r-lg: 20px;
+  --r-xl: 28px;
+  --shadow-sm: 0 1px 2px rgba(15,23,42,0.04);
+  --shadow-md: 0 4px 12px rgba(15,23,42,0.06), 0 1px 3px rgba(15,23,42,0.04);
+  --shadow-lg: 0 12px 32px rgba(15,23,42,0.08), 0 4px 8px rgba(15,23,42,0.04);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body { background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 15px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+body { min-height: 100vh; }
+.app { max-width: 1280px; margin: 0 auto; padding: 24px 20px 80px; }
+
+/* HEADER */
+.hdr { background: linear-gradient(135deg, #22C55E 0%, #14B8A6 50%, #0EA5E9 100%); border-radius: var(--r-xl); padding: 32px; margin-bottom: 24px; color: white; position: relative; overflow: hidden; box-shadow: var(--shadow-lg); }
+.hdr::before { content: ''; position: absolute; top: -40px; right: -40px; width: 220px; height: 220px; background: radial-gradient(circle, rgba(250,204,21,0.4), transparent 70%); border-radius: 50%; }
+.hdr::after { content: ''; position: absolute; bottom: -60px; left: 30%; width: 180px; height: 180px; background: radial-gradient(circle, rgba(236,72,153,0.35), transparent 70%); border-radius: 50%; }
+.hdr-inner { position: relative; z-index: 1; display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; flex-wrap: wrap; }
+.hdr-left .eyebrow { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; color: rgba(255,255,255,0.85); margin-bottom: 8px; }
+.hdr-left h1 { font-family: var(--serif); font-size: 56px; font-weight: 400; line-height: 1; letter-spacing: -0.02em; }
+.hdr-left h1 em { font-style: italic; color: #FEF08A; }
+.hdr-left .sub { margin-top: 12px; font-size: 14px; color: rgba(255,255,255,0.92); max-width: 460px; line-height: 1.5; }
+.hdr-stats { display: flex; gap: 10px; flex-wrap: wrap; }
+.hdr-pill { background: rgba(255,255,255,0.2); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.3); border-radius: 999px; padding: 10px 16px; font-size: 12px; font-weight: 600; color: white; display: flex; align-items: center; gap: 8px; }
+.hdr-pill .dot { width: 8px; height: 8px; border-radius: 50%; background: #FEF08A; }
+.hdr-pill.b .dot { background: #FCA5A5; }
+.hdr-pill.c .dot { background: #FBBF24; }
+.hdr-pill.d .dot { background: #C4B5FD; }
+.hdr-pill.e .dot { background: #86EFAC; }
+
+/* NAV */
+.nav { display: flex; gap: 4px; margin-bottom: 28px; background: var(--bg-card); padding: 6px; border-radius: 999px; border: 1px solid var(--line); overflow-x: auto; scrollbar-width: none; box-shadow: var(--shadow-sm); }
+.nav::-webkit-scrollbar { display: none; }
+.nav button { background: transparent; border: none; padding: 10px 18px; font-family: var(--sans); font-size: 13px; font-weight: 600; color: var(--ink-mute); cursor: pointer; border-radius: 999px; transition: all 0.2s; white-space: nowrap; flex-shrink: 0; }
+.nav button:hover { color: var(--ink); }
+.nav button.active { background: linear-gradient(135deg, #22C55E, #16A34A); color: white; box-shadow: 0 4px 12px rgba(34,197,94,0.3); }
+
+.view { display: none; }
+.view.active { display: block; animation: fade 0.3s ease; }
+@keyframes fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+/* DAY STRIP */
+.day-strip { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; margin-bottom: 24px; }
+.day-pill { background: var(--bg-card); border: 1.5px solid var(--line); border-radius: var(--r-md); padding: 14px 8px; cursor: pointer; text-align: center; transition: all 0.2s; position: relative; }
+.day-pill:hover { border-color: var(--green-bright); transform: translateY(-1px); }
+.day-pill.active { background: linear-gradient(135deg, #22C55E, #16A34A); border-color: var(--green); color: white; box-shadow: 0 8px 20px rgba(34,197,94,0.3); }
+.day-pill .num { font-family: var(--serif); font-style: italic; font-size: 24px; font-weight: 400; line-height: 1; color: var(--ink); }
+.day-pill.active .num { color: white; }
+.day-pill .name { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-top: 6px; color: var(--ink-mute); }
+.day-pill.active .name { color: rgba(255,255,255,0.85); }
+.day-pill .today-dot { position: absolute; top: 6px; right: 6px; width: 8px; height: 8px; border-radius: 50%; background: var(--orange-bright); display: none; box-shadow: 0 0 0 3px rgba(249,115,22,0.2); }
+.day-pill.today .today-dot { display: block; }
+.day-pill.today.active .today-dot { background: #FEF08A; box-shadow: 0 0 0 3px rgba(255,255,255,0.3); }
+
+/* DAY SUMMARY */
+.day-summary { background: var(--bg-card); border: 1px solid var(--line); border-radius: var(--r-lg); padding: 28px; margin-bottom: 20px; display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center; position: relative; overflow: hidden; }
+.day-summary::before { content: ''; position: absolute; top: 0; left: 0; width: 5px; height: 100%; background: linear-gradient(180deg, var(--green-bright), var(--teal-bright)); }
+.day-summary[data-type="push"]::before { background: linear-gradient(180deg, var(--orange-bright), var(--yellow-bright)); }
+.day-summary[data-type="legs"]::before { background: linear-gradient(180deg, var(--purple-bright), var(--pink-bright)); }
+.day-summary[data-type="rest"]::before { background: linear-gradient(180deg, var(--blue-bright), var(--teal-bright)); }
+.day-info h2 { font-family: var(--serif); font-size: 48px; font-weight: 400; line-height: 1; letter-spacing: -0.02em; margin-bottom: 8px; }
+.day-info h2 em { font-style: italic; color: var(--green); }
+.day-info .day-type { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--ink-soft); background: var(--green-soft); padding: 6px 12px; border-radius: 999px; }
+.day-info .day-type.push { background: var(--orange-soft); color: var(--orange); }
+.day-info .day-type.legs { background: var(--purple-soft); color: var(--purple); }
+.day-info .day-type.rest { background: var(--blue-soft); color: var(--blue); }
+.day-info .day-type .icon { font-size: 14px; }
+.day-info .completion { margin-top: 14px; font-size: 12px; color: var(--ink-mute); font-weight: 500; }
+.day-info .completion strong { color: var(--green); font-weight: 700; }
+.day-totals { display: flex; gap: 28px; }
+.total-stat { text-align: right; }
+.total-stat .v { font-family: var(--serif); font-style: italic; font-size: 56px; font-weight: 400; line-height: 1; letter-spacing: -0.02em; }
+.total-stat.cal .v { color: var(--orange); }
+.total-stat.pro .v { color: var(--green); }
+.total-stat .l { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink-mute); margin-top: 6px; }
+
+/* MEAL CARDS */
+.meal { background: var(--bg-card); border: 1px solid var(--line); border-radius: var(--r-lg); margin-bottom: 12px; overflow: hidden; transition: all 0.2s; }
+.meal:hover { border-color: var(--ink-mute); box-shadow: var(--shadow-md); }
+.meal.done { background: var(--green-soft); border-color: rgba(34,197,94,0.3); }
+.meal-head { display: grid; grid-template-columns: 80px 1fr auto; gap: 16px; padding: 16px; align-items: center; cursor: pointer; }
+
+.meal-thumb { width: 80px; height: 80px; border-radius: var(--r-md); display: grid; place-items: center; font-size: 38px; flex-shrink: 0; position: relative; overflow: hidden; }
+.meal-thumb.coffee   { background: linear-gradient(135deg, #FED7AA, #C2410C); }
+.meal-thumb.nuts     { background: linear-gradient(135deg, #FDE68A, #D97706); }
+.meal-thumb.seeds    { background: linear-gradient(135deg, #FEF08A, #CA8A04); }
+.meal-thumb.makhana  { background: linear-gradient(135deg, #FFF7ED, #F59E0B); }
+.meal-thumb.chana    { background: linear-gradient(135deg, #FDE68A, #B45309); }
+.meal-thumb.coconut  { background: linear-gradient(135deg, #F0FDF4, #84CC16); }
+.meal-thumb.sprouts  { background: linear-gradient(135deg, #BBF7D0, #16A34A); }
+.meal-thumb.breakfast{ background: linear-gradient(135deg, #FED7AA, #FB923C); }
+.meal-thumb.egg      { background: linear-gradient(135deg, #FEF3C7, #F59E0B); }
+.meal-thumb.bowl     { background: linear-gradient(135deg, #FBCFE8, #EC4899); }
+.meal-thumb.snack    { background: linear-gradient(135deg, #FEE2E2, #F87171); }
+.meal-thumb.lunch    { background: linear-gradient(135deg, #BBF7D0, #22C55E); }
+.meal-thumb.preworkout{background: linear-gradient(135deg, #FCA5A5, #EF4444); }
+.meal-thumb.during   { background: linear-gradient(135deg, #BFDBFE, #3B82F6); }
+.meal-thumb.postworkout{ background: linear-gradient(135deg, #BBF7D0, #16A34A); }
+.meal-thumb.dinner   { background: linear-gradient(135deg, #DDD6FE, #A855F7); }
+.meal-thumb.cheat    { background: linear-gradient(135deg, #FBCFE8, #F97316); }
+.meal-thumb.drink    { background: linear-gradient(135deg, #C7D2FE, #6366F1); }
+.meal-thumb::after { content: ''; position: absolute; top: 8px; right: 8px; width: 28px; height: 28px; background: rgba(255,255,255,0.25); border-radius: 50%; filter: blur(6px); }
+
+.meal-meta { min-width: 0; }
+.meal-time-row { display: flex; gap: 8px; align-items: center; margin-bottom: 6px; flex-wrap: wrap; }
+.meal-time { font-size: 11px; font-weight: 700; color: var(--ink-mute); letter-spacing: 0.05em; }
+
+.tag { display: inline-flex; align-items: center; font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 999px; letter-spacing: 0.03em; text-transform: lowercase; }
+.tag.cooling     { background: var(--blue-soft);   color: var(--blue); }
+.tag.gut         { background: var(--green-soft);  color: var(--green); }
+.tag.protein     { background: var(--purple-soft); color: var(--purple); }
+.tag.kidney      { background: var(--teal-soft);   color: var(--teal); }
+.tag.fiber       { background: var(--yellow-soft); color: var(--yellow); }
+.tag.belly       { background: var(--orange-soft); color: var(--orange); }
+.tag.energy      { background: var(--red-soft);    color: var(--red); }
+.tag.recovery    { background: var(--green-soft);  color: var(--green); }
+.tag.electrolyte { background: var(--blue-soft);   color: var(--blue); }
+.tag.cheat       { background: var(--pink-soft);   color: var(--pink); }
+.tag.veg         { background: var(--green-soft);  color: var(--green); }
+.tag.summer      { background: var(--yellow-soft); color: var(--yellow); }
+.tag.calcium     { background: var(--purple-soft); color: var(--purple); }
+
+.meal-title { font-size: 17px; font-weight: 700; color: var(--ink); line-height: 1.25; letter-spacing: -0.01em; }
+.meal-desc { font-size: 13px; color: var(--ink-mute); margin-top: 4px; line-height: 1.45; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+.meal-macros { text-align: right; flex-shrink: 0; }
+.meal-macros .cal { font-family: var(--serif); font-style: italic; font-size: 28px; font-weight: 400; line-height: 1; color: var(--orange); }
+.meal-macros .cal-l { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; color: var(--ink-mute); text-transform: uppercase; margin-top: 2px; }
+.meal-macros .pro { font-size: 13px; font-weight: 700; color: var(--green); margin-top: 6px; }
+
+.meal-body { display: none; padding: 0 16px 16px 16px; border-top: 1px dashed var(--line); padding-top: 16px; }
+.meal.open .meal-body { display: block; animation: slide 0.25s ease; }
+@keyframes slide { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
+.meal-sect { margin-bottom: 14px; }
+.meal-sect:last-of-type { margin-bottom: 16px; }
+.meal-sect h4 { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink-mute); margin-bottom: 8px; }
+
+.ing-list { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 4px 14px; }
+.ing-list li { font-size: 13px; color: var(--ink-soft); padding-left: 14px; position: relative; line-height: 1.5; }
+.ing-list li::before { content: ''; position: absolute; left: 0; top: 9px; width: 5px; height: 5px; border-radius: 50%; background: var(--green-bright); }
+
+.recipe-box { background: linear-gradient(135deg, #FFF7ED 0%, #FFFEF7 100%); border-left: 3px solid var(--orange-bright); padding: 12px 14px; border-radius: 0 var(--r-sm) var(--r-sm) 0; font-size: 13.5px; color: var(--ink-soft); line-height: 1.55; font-style: italic; font-family: var(--serif); }
+
+.alt-list { list-style: none; background: var(--green-soft); border-radius: var(--r-sm); padding: 12px 16px; }
+.alt-list li { font-size: 13px; color: var(--ink-soft); padding: 5px 0 5px 22px; position: relative; line-height: 1.45; }
+.alt-list li::before { content: '⇄'; position: absolute; left: 0; top: 5px; color: var(--green); font-size: 13px; font-weight: 700; }
+
+.meal-check { display: inline-flex; align-items: center; gap: 8px; background: var(--bg-soft); border: 1.5px solid var(--line); padding: 8px 14px; border-radius: var(--r-sm); font-family: var(--sans); font-size: 12px; font-weight: 600; cursor: pointer; color: var(--ink-soft); transition: all 0.2s; }
+.meal-check:hover { border-color: var(--green-bright); color: var(--green); }
+.meal-check.done { background: var(--green); color: white; border-color: var(--green); }
+.meal-check .tick { width: 14px; height: 14px; border: 1.5px solid currentColor; border-radius: 4px; display: grid; place-items: center; font-size: 10px; font-weight: 800; }
+.meal-check.done .tick { background: white; color: var(--green); }
+
+/* PROGRESS */
+.day-progress { margin-top: 20px; background: var(--bg-card); border: 1px solid var(--line); border-radius: var(--r-md); padding: 16px 20px; display: flex; align-items: center; gap: 16px; }
+.progress-label { font-size: 12px; font-weight: 700; color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.08em; white-space: nowrap; }
+.progress-bar { flex: 1; height: 8px; background: var(--bg-soft); border-radius: 999px; overflow: hidden; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, #22C55E, #14B8A6); border-radius: 999px; transition: width 0.4s ease; }
+.progress-count { font-family: var(--serif); font-style: italic; font-size: 22px; font-weight: 400; color: var(--green); }
+
+/* WORKOUTS */
+.wo-shared { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-bottom: 24px; }
+.wo-shared-card { background: var(--bg-card); border: 1px solid var(--line); border-radius: var(--r-lg); padding: 20px; position: relative; }
+.wo-shared-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; border-radius: var(--r-lg) var(--r-lg) 0 0; }
+.wo-shared-card.warm::before { background: var(--orange-bright); }
+.wo-shared-card.cool::before { background: var(--blue-bright); }
+.wo-shared-card.rest::before { background: var(--purple-bright); }
+.wo-shared-card h3 { font-size: 14px; font-weight: 800; margin-bottom: 4px; display: flex; align-items: center; gap: 8px; }
+.wo-shared-card .sub { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-mute); margin-bottom: 14px; }
+.wo-shared-card ul { list-style: none; }
+.wo-shared-card li { font-size: 13px; color: var(--ink-soft); padding: 4px 0 4px 14px; position: relative; line-height: 1.4; }
+.wo-shared-card li::before { content: ''; position: absolute; left: 0; top: 12px; width: 5px; height: 5px; border-radius: 50%; }
+.wo-shared-card.warm li::before { background: var(--orange-bright); }
+.wo-shared-card.cool li::before { background: var(--blue-bright); }
+.wo-shared-card.rest li::before { background: var(--purple-bright); }
+
+.workout-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 18px; }
+.wo-card { background: var(--bg-card); border: 1px solid var(--line); border-radius: var(--r-lg); overflow: hidden; transition: all 0.2s; }
+.wo-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.wo-hero { height: 140px; display: grid; grid-template-columns: 1fr auto; align-items: end; padding: 16px 20px; color: white; position: relative; overflow: hidden; }
+.wo-hero svg.illus { position: absolute; right: -10px; top: 50%; transform: translateY(-50%); height: 120px; width: 120px; opacity: 0.85; }
+.wo-card[data-type="pull"] .wo-hero { background: linear-gradient(135deg, #F97316 0%, #EA580C 100%); }
+.wo-card[data-type="push"] .wo-hero { background: linear-gradient(135deg, #FACC15 0%, #EAB308 100%); color: #422006; }
+.wo-card[data-type="legs"] .wo-hero { background: linear-gradient(135deg, #A855F7 0%, #7C3AED 100%); }
+.wo-card[data-type="rest"] .wo-hero { background: linear-gradient(135deg, #38BDF8 0%, #14B8A6 100%); }
+.wo-hero-meta { z-index: 1; }
+.wo-day-num { font-family: var(--serif); font-style: italic; font-size: 36px; font-weight: 400; line-height: 1; margin-bottom: 4px; }
+.wo-day-name { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.15em; opacity: 0.85; margin-bottom: 14px; }
+.wo-type-name { font-family: var(--serif); font-style: italic; font-size: 26px; font-weight: 400; line-height: 1; letter-spacing: -0.01em; }
+.wo-body { padding: 18px 20px 20px; }
+.wo-meta-row { display: flex; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
+.wo-meta-pill { background: var(--bg-soft); padding: 4px 10px; border-radius: 999px; font-size: 11px; font-weight: 600; color: var(--ink-soft); }
+.wo-meta-pill strong { font-weight: 800; color: var(--ink); }
+.ex-list { list-style: none; }
+.ex-item { padding: 12px 0; border-bottom: 1px solid var(--line-soft); }
+.ex-item:last-child { border-bottom: none; padding-bottom: 0; }
+.ex-row { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.ex-name { font-weight: 600; font-size: 14px; color: var(--ink); }
+.ex-name .core-flag { display: inline-block; margin-left: 6px; font-size: 9px; font-weight: 800; color: var(--pink); background: var(--pink-soft); padding: 2px 6px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.06em; vertical-align: 1px; }
+.ex-sets { font-size: 12px; font-weight: 700; white-space: nowrap; padding: 3px 9px; border-radius: 6px; background: var(--green-soft); color: var(--green); }
+.wo-card[data-type="push"] .ex-sets { background: var(--yellow-soft); color: var(--yellow); }
+.wo-card[data-type="legs"] .ex-sets { background: var(--purple-soft); color: var(--purple); }
+.wo-card[data-type="rest"] .ex-sets { background: var(--blue-soft); color: var(--blue); }
+.ex-mod { font-family: var(--serif); font-size: 12.5px; font-style: italic; color: var(--ink-mute); margin-top: 4px; line-height: 1.4; }
+
+/* TOOLS */
+.tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 18px; }
+.tool-card { background: var(--bg-card); border: 1px solid var(--line); border-radius: var(--r-lg); padding: 24px; position: relative; overflow: hidden; }
+.tool-card::before { content: ''; position: absolute; top: -20px; right: -20px; width: 100px; height: 100px; border-radius: 50%; opacity: 0.15; }
+.tool-card.blue::before   { background: var(--blue-bright); }
+.tool-card.green::before  { background: var(--green-bright); }
+.tool-card.orange::before { background: var(--orange-bright); }
+.tool-card.purple::before { background: var(--purple-bright); }
+.tool-card.pink::before   { background: var(--pink-bright); }
+.tool-card.yellow::before { background: var(--yellow-bright); }
+.tool-card.teal::before   { background: var(--teal-bright); }
+.tool-card.red::before    { background: var(--red-bright); }
+.tool-card .icon-pill { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: var(--r-md); font-size: 24px; margin-bottom: 14px; position: relative; z-index: 1; }
+.tool-card.blue   .icon-pill { background: var(--blue-soft); }
+.tool-card.green  .icon-pill { background: var(--green-soft); }
+.tool-card.orange .icon-pill { background: var(--orange-soft); }
+.tool-card.purple .icon-pill { background: var(--purple-soft); }
+.tool-card.pink   .icon-pill { background: var(--pink-soft); }
+.tool-card.yellow .icon-pill { background: var(--yellow-soft); }
+.tool-card.teal   .icon-pill { background: var(--teal-soft); }
+.tool-card.red    .icon-pill { background: var(--red-soft); }
+.tool-card h3 { font-family: var(--serif); font-size: 26px; font-weight: 400; line-height: 1.15; margin-bottom: 8px; letter-spacing: -0.01em; position: relative; z-index: 1; }
+.tool-card h3 em { font-style: italic; }
+.tool-card.blue   h3 em { color: var(--blue); }
+.tool-card.green  h3 em { color: var(--green); }
+.tool-card.orange h3 em { color: var(--orange); }
+.tool-card.purple h3 em { color: var(--purple); }
+.tool-card.pink   h3 em { color: var(--pink); }
+.tool-card.yellow h3 em { color: var(--yellow); }
+.tool-card.teal   h3 em { color: var(--teal); }
+.tool-card.red    h3 em { color: var(--red); }
+.tool-card .lead { font-size: 13px; color: var(--ink-soft); margin-bottom: 14px; line-height: 1.55; }
+.tool-list { list-style: none; }
+.tool-list li { padding: 9px 0 9px 22px; font-size: 13px; color: var(--ink-soft); border-bottom: 1px solid var(--line-soft); line-height: 1.5; position: relative; }
+.tool-list li:last-child { border-bottom: none; }
+.tool-list li::before { content: '✦'; position: absolute; left: 0; top: 9px; font-size: 12px; }
+.tool-card.blue   .tool-list li::before { color: var(--blue-bright); }
+.tool-card.green  .tool-list li::before { color: var(--green-bright); }
+.tool-card.orange .tool-list li::before { color: var(--orange-bright); }
+.tool-card.purple .tool-list li::before { color: var(--purple-bright); }
+.tool-card.pink   .tool-list li::before { color: var(--pink-bright); }
+.tool-card.yellow .tool-list li::before { color: var(--yellow); }
+.tool-card.teal   .tool-list li::before { color: var(--teal-bright); }
+.tool-card.red    .tool-list li::before { color: var(--red-bright); }
+.tool-card.wide   { grid-column: 1 / -1; }
+
+/* SICK-DAY CARD INTERNALS */
+.sick-rules { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 4px; margin-bottom: 6px; position: relative; z-index: 1; }
+.sick-rule { background: var(--red-soft); color: var(--red); padding: 7px 14px; border-radius: 999px; font-size: 12px; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; }
+
+.sick-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 14px; margin-top: 22px; position: relative; z-index: 1; }
+.sick-block { background: white; border-radius: var(--r-md); padding: 18px 20px; border: 1px solid var(--line); border-left: 4px solid; }
+.sick-block.drinks   { border-left-color: var(--blue-bright); }
+.sick-block.meals    { border-left-color: var(--orange-bright); }
+.sick-block.smoothie { border-left-color: var(--pink-bright); }
+.sick-block.avoid    { border-left-color: var(--red-bright); }
+
+.sick-block-head { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px dashed var(--line); }
+.sick-block-icon { font-size: 22px; }
+.sick-block-title { font-family: var(--serif); font-size: 22px; font-weight: 400; font-style: italic; letter-spacing: -0.01em; line-height: 1; }
+.sick-block.drinks   .sick-block-title { color: var(--blue); }
+.sick-block.meals    .sick-block-title { color: var(--orange); }
+.sick-block.smoothie .sick-block-title { color: var(--pink); }
+.sick-block.avoid    .sick-block-title { color: var(--red); }
+
+.sick-item { padding: 10px 0; border-bottom: 1px solid var(--line-soft); }
+.sick-item:first-child { padding-top: 4px; }
+.sick-item:last-child { border-bottom: none; padding-bottom: 0; }
+.sick-item-name { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 3px; }
+.sick-item-desc { font-size: 12.5px; color: var(--ink-soft); line-height: 1.45; }
+.sick-item-macros { display: inline-flex; gap: 6px; margin-top: 7px; flex-wrap: wrap; }
+.sick-item-macro { font-size: 10px; font-weight: 700; padding: 3px 9px; border-radius: 999px; background: var(--pink-soft); color: var(--pink); }
+
+.sick-block.avoid .sick-item { padding: 8px 0; border-bottom: none; }
+.sick-block.avoid .sick-item:first-child { padding-top: 4px; }
+.sick-block.avoid .sick-item-name { font-weight: 600; color: var(--ink-soft); font-size: 13.5px; display: flex; align-items: center; gap: 10px; margin-bottom: 0; }
+.sick-block.avoid .sick-item-name::before { content: '✕'; color: var(--red-bright); font-weight: 800; font-size: 14px; flex-shrink: 0; width: 12px; }
+.tool-list li strong { color: var(--ink); font-weight: 700; }
+.hyd-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
+.hyd-row { background: var(--blue-soft); padding: 10px 12px; border-radius: var(--r-sm); }
+.hyd-row .t { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--blue); margin-bottom: 2px; }
+.hyd-row .v { font-size: 12px; font-weight: 700; color: var(--ink); }
+
+/* RECIPE LIST (used in Make at Home card) */
+.recipe-list { list-style: none; }
+.recipe-list li { padding: 12px 0; border-bottom: 1px solid var(--line-soft); }
+.recipe-list li:last-child { border-bottom: none; }
+.recipe-list .r-name { font-family: var(--serif); font-style: italic; font-size: 17px; font-weight: 400; color: var(--teal); margin-bottom: 4px; letter-spacing: -0.01em; }
+.recipe-list .r-step { font-size: 13px; color: var(--ink-soft); line-height: 1.55; }
+
+/* BOWL LIBRARY */
+.bowl-library { background: linear-gradient(135deg, #FDF2F8 0%, #FCE7F3 100%); border-radius: var(--r-xl); padding: 28px; margin-bottom: 28px; border: 1px solid var(--pink-soft); }
+.lib-head { display: flex; gap: 18px; align-items: center; margin-bottom: 22px; flex-wrap: wrap; }
+.lib-icon { width: 60px; height: 60px; background: linear-gradient(135deg, #EC4899, #DB2777); border-radius: var(--r-md); display: grid; place-items: center; font-size: 32px; flex-shrink: 0; box-shadow: 0 6px 16px rgba(236,72,153,0.3); }
+.lib-head-text { min-width: 0; flex: 1; }
+.lib-head h2 { font-family: var(--serif); font-size: 36px; font-weight: 400; line-height: 1; letter-spacing: -0.02em; }
+.lib-head h2 em { font-style: italic; color: var(--pink); }
+.lib-head p { font-size: 13px; color: var(--ink-soft); margin-top: 4px; line-height: 1.5; }
+.bowl-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+.bowl-card { background: white; border: 1px solid var(--line); border-radius: var(--r-md); overflow: hidden; transition: all 0.2s; }
+.bowl-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); border-color: var(--pink-bright); }
+.bowl-thumb { height: 70px; background: linear-gradient(135deg, #FBCFE8, #EC4899); display: grid; place-items: center; font-size: 36px; position: relative; }
+.bowl-thumb::after { content: ''; position: absolute; top: 10px; right: 14px; width: 32px; height: 32px; background: rgba(255,255,255,0.3); border-radius: 50%; filter: blur(8px); }
+.bowl-body { padding: 14px 16px 16px; }
+.bowl-flag { display: inline-block; font-size: 9px; font-weight: 800; padding: 3px 8px; border-radius: 999px; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
+.bowl-flag.in-plan { color: var(--green); background: var(--green-soft); }
+.bowl-flag.new     { color: var(--pink);  background: var(--pink-soft); }
+.bowl-body h4 { font-family: var(--serif); font-size: 20px; font-weight: 400; letter-spacing: -0.01em; margin-bottom: 8px; line-height: 1.15; }
+.bowl-ing { font-size: 12px; color: var(--ink-soft); line-height: 1.45; margin-bottom: 4px; }
+.bowl-top { font-family: var(--serif); font-style: italic; font-size: 12px; color: var(--ink-mute); line-height: 1.4; margin-bottom: 10px; }
+.bowl-stats { display: flex; gap: 6px; flex-wrap: wrap; }
+.bowl-pill { font-size: 10px; font-weight: 700; padding: 3px 9px; border-radius: 999px; }
+.bowl-pill.k { background: var(--orange-soft); color: var(--orange); }
+.bowl-pill.p { background: var(--green-soft);  color: var(--green); }
+.bowl-pill.t { background: var(--blue-soft);   color: var(--blue); }
+
+/* CHEATS */
+.cheats-hero { background: linear-gradient(135deg, #EC4899 0%, #F97316 100%); border-radius: var(--r-xl); padding: 36px; margin-bottom: 28px; color: white; position: relative; overflow: hidden; }
+.cheats-hero::before { content: ''; position: absolute; top: -40px; right: -40px; width: 200px; height: 200px; background: radial-gradient(circle, rgba(250,204,21,0.4), transparent 70%); border-radius: 50%; }
+.cheats-hero-inner { position: relative; z-index: 1; max-width: 720px; }
+.cheats-hero h2 { font-family: var(--serif); font-size: 56px; font-weight: 400; line-height: 1; letter-spacing: -0.02em; margin-bottom: 12px; }
+.cheats-hero h2 em { font-style: italic; color: #FEF08A; }
+.cheats-hero p { font-size: 15px; line-height: 1.55; color: rgba(255,255,255,0.92); }
+.cheat-sect { margin-bottom: 32px; }
+.cheat-sect-head { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+.cheat-sect-head .num { font-family: var(--serif); font-style: italic; font-size: 36px; font-weight: 400; color: var(--pink); line-height: 1; }
+.cheat-sect-head h3 { font-family: var(--serif); font-size: 26px; font-weight: 400; letter-spacing: -0.01em; }
+.cheat-sect-head .meta { margin-left: auto; font-size: 12px; font-weight: 600; color: var(--ink-mute); background: var(--bg-card); padding: 5px 10px; border-radius: 999px; border: 1px solid var(--line); }
+
+.cheat-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; }
+.cheat-option { background: var(--bg-card); border: 1px solid var(--line); border-radius: var(--r-md); padding: 0; transition: all 0.2s; position: relative; overflow: hidden; }
+.cheat-option:hover { border-color: var(--pink-bright); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+.cheat-thumb { height: 110px; display: grid; place-items: center; font-size: 52px; position: relative; overflow: hidden; }
+.cheat-thumb.paneer  { background: linear-gradient(135deg, #FED7AA, #FB923C); }
+.cheat-thumb.pizza   { background: linear-gradient(135deg, #FCA5A5, #DC2626); }
+.cheat-thumb.chicken { background: linear-gradient(135deg, #FDBA74, #C2410C); }
+.cheat-thumb.curry   { background: linear-gradient(135deg, #FCD34D, #D97706); }
+.cheat-thumb.biryani { background: linear-gradient(135deg, #FBBF24, #B45309); }
+.cheat-thumb.tikka   { background: linear-gradient(135deg, #FCA5A5, #B91C1C); }
+.cheat-thumb::after { content: ''; position: absolute; top: 14px; right: 18px; width: 42px; height: 42px; background: rgba(255,255,255,0.25); border-radius: 50%; filter: blur(10px); }
+
+.cheat-body { padding: 18px; position: relative; }
+
+.cheat-option .veg-flag { position: absolute; top: 14px; right: 14px; width: 16px; height: 16px; border: 2px solid var(--green); border-radius: 3px; display: grid; place-items: center; background: white; z-index: 2; }
+.cheat-option .veg-flag::after { content: ''; width: 7px; height: 7px; background: var(--green); border-radius: 50%; }
+.cheat-option.nv .veg-flag { border-color: var(--red); }
+.cheat-option.nv .veg-flag::after { background: var(--red); }
+
+.cheat-body h4 { font-family: var(--serif); font-size: 20px; font-weight: 400; margin-bottom: 8px; padding-right: 28px; line-height: 1.15; letter-spacing: -0.01em; }
+.cheat-body .desc { font-size: 13px; color: var(--ink-soft); line-height: 1.5; margin-bottom: 12px; }
+.cheat-body .stats { display: flex; gap: 8px; flex-wrap: wrap; }
+.cheat-body .stat-pill { font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 999px; }
+.cheat-body .stat-pill.k { background: var(--orange-soft); color: var(--orange); }
+.cheat-body .stat-pill.p { background: var(--green-soft); color: var(--green); }
+.cheat-body .stat-pill.d { background: var(--pink-soft); color: var(--pink); }
+
+/* DRINKS */
+.drink-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; }
+.drink-card { background: var(--bg-card); border: 1.5px solid var(--line); border-radius: var(--r-md); padding: 0; position: relative; overflow: hidden; transition: all 0.2s; }
+.drink-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); border-color: var(--pink-bright); }
+
+.drink-thumb { height: 100px; display: grid; place-items: center; font-size: 46px; position: relative; overflow: hidden; }
+.drink-thumb.vodka   { background: linear-gradient(135deg, #BFDBFE, #38BDF8); }
+.drink-thumb.gin     { background: linear-gradient(135deg, #BBF7D0, #14B8A6); }
+.drink-thumb.whiskey { background: linear-gradient(135deg, #FDE68A, #B45309); }
+.drink-thumb::after { content: ''; position: absolute; top: 12px; right: 16px; width: 40px; height: 40px; background: rgba(255,255,255,0.3); border-radius: 50%; filter: blur(10px); }
+
+.drink-num { position: absolute; top: 10px; left: 16px; font-family: var(--serif); font-style: italic; font-size: 26px; font-weight: 400; color: rgba(255,255,255,0.85); line-height: 1; z-index: 1; }
+
+.drink-body { padding: 20px; }
+.drink-body h4 { font-family: var(--serif); font-size: 22px; font-weight: 400; margin-bottom: 8px; letter-spacing: -0.01em; }
+.drink-body h4 em { font-style: italic; color: var(--pink); }
+.drink-body .meta { display: inline-block; font-size: 11px; font-weight: 700; color: var(--pink); background: var(--pink-soft); padding: 4px 10px; border-radius: 999px; margin-bottom: 12px; }
+.drink-body .recipe-text { font-family: var(--serif); font-style: italic; font-size: 14px; color: var(--ink-soft); line-height: 1.55; }
+
+/* FOOTER */
+.foot { margin-top: 60px; padding: 24px; text-align: center; background: var(--bg-card); border-radius: var(--r-lg); border: 1px solid var(--line); font-size: 12px; font-weight: 600; color: var(--ink-mute); display: flex; justify-content: center; align-items: center; gap: 16px; flex-wrap: wrap; }
+.foot .reset { background: var(--red-soft); border: 1px solid var(--red-soft); padding: 8px 16px; border-radius: 999px; font-family: var(--sans); font-size: 11px; font-weight: 700; cursor: pointer; color: var(--red); text-transform: uppercase; letter-spacing: 0.08em; }
+.foot .reset:hover { background: var(--red); color: white; }
+
+/* RESPONSIVE */
+@media (max-width: 720px) {
+  .app { padding: 16px 14px 60px; }
+  .hdr { padding: 22px; border-radius: var(--r-lg); }
+  .hdr-left h1 { font-size: 38px; }
+  .hdr-left .sub { font-size: 13px; }
+  .hdr-inner { flex-direction: column; align-items: flex-start; }
+  .day-strip { gap: 4px; }
+  .day-pill { padding: 10px 4px; }
+  .day-pill .num { font-size: 20px; }
+  .day-pill .name { font-size: 9px; }
+  .day-summary { grid-template-columns: 1fr; padding: 20px; }
+  .day-info h2 { font-size: 36px; }
+  .day-totals { gap: 18px; }
+  .total-stat .v { font-size: 38px; }
+  .total-stat { text-align: left; }
+  .meal-head { grid-template-columns: 60px 1fr auto; padding: 14px; gap: 12px; }
+  .meal-thumb { width: 60px; height: 60px; font-size: 28px; }
+  .meal-title { font-size: 15px; }
+  .meal-desc { font-size: 12px; }
+  .meal-macros .cal { font-size: 22px; }
+  .meal-macros .pro { font-size: 11px; }
+  .cheats-hero { padding: 24px; }
+  .cheats-hero h2 { font-size: 38px; }
+  .workout-grid { grid-template-columns: 1fr; }
+  .wo-hero svg.illus { height: 90px; width: 90px; }
+}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <header class="hdr">
+    <div class="hdr-inner">
+      <div class="hdr-left">
+        <div class="eyebrow">Personal Protocol · Summer 2026</div>
+        <h1>The <em>Protocol.</em></h1>
+        <p class="sub">7-day fat loss + lean muscle plan. Mostly veg, gut-safe, 2 eggs/week, chicken weekend-only — built around your 5:30 AM shift.</p>
+      </div>
+      <div class="hdr-stats">
+        <div class="hdr-pill"><span class="dot"></span>~1,400 kcal</div>
+        <div class="hdr-pill b"><span class="dot"></span>90–110g protein</div>
+        <div class="hdr-pill d"><span class="dot"></span>No sugar</div>
+        <div class="hdr-pill e"><span class="dot"></span>Gut safe</div>
+      </div>
+    </div>
+  </header>
+
+  <nav class="nav" id="nav">
+    <button data-tab="daily" class="active">Daily Plan</button>
+    <button data-tab="workouts">Workouts</button>
+    <button data-tab="tools">Hydration &amp; Habits</button>
+    <button data-tab="cheats">Cheats &amp; Drinks</button>
+  </nav>
+
+  <main>
+    <section id="daily" class="view active">
+      <div class="day-strip" id="day-strip"></div>
+      <div class="day-summary" id="day-summary">
+        <div class="day-info">
+          <h2 id="day-title">Monday</h2>
+          <span class="day-type" id="day-type">
+            <span class="icon">●</span>
+            <span id="day-type-text">Pull Day</span>
+          </span>
+          <div class="completion" id="completion-text"></div>
+        </div>
+        <div class="day-totals">
+          <div class="total-stat cal">
+            <div class="v" id="cal-num">0</div>
+            <div class="l">kcal planned</div>
+          </div>
+          <div class="total-stat pro">
+            <div class="v" id="pro-num">0g</div>
+            <div class="l">protein planned</div>
+          </div>
+        </div>
+      </div>
+      <div id="timeline"></div>
+      <div class="day-progress">
+        <div class="progress-label">Today's progress</div>
+        <div class="progress-bar"><div class="progress-fill" id="prog-fill" style="width:0%"></div></div>
+        <div class="progress-count" id="prog-count">0/0</div>
+      </div>
+    </section>
+
+    <section id="workouts" class="view">
+      <div class="wo-shared">
+        <div class="wo-shared-card warm">
+          <h3>🔥 Warm-up</h3>
+          <div class="sub">5 min · every session</div>
+          <ul>
+            <li>Arm circles — 30s each way</li>
+            <li>Hip circles — 30s each way</li>
+            <li>Leg swings — 10 each leg</li>
+            <li>Bodyweight squats — 15</li>
+            <li>Light cardio — 3 min easy</li>
+          </ul>
+        </div>
+        <div class="wo-shared-card cool">
+          <h3>❄️ Cool-down</h3>
+          <div class="sub">5 min · every session</div>
+          <ul>
+            <li>Child's pose — 30s</li>
+            <li>Cat-cow — 10 reps</li>
+            <li>Forward fold — 30s</li>
+            <li>Chest stretch — 30s each</li>
+            <li>Hamstring stretch — 30s each</li>
+          </ul>
+        </div>
+        <div class="wo-shared-card rest">
+          <h3>⏱️ Rest periods</h3>
+          <div class="sub">Between sets</div>
+          <ul>
+            <li>Compound lifts — 90s</li>
+            <li>Isolation — 60s</li>
+            <li>Core — 30–45s</li>
+            <li>Total session — 50–60 min</li>
+            <li>Progression — +1 win/week</li>
+          </ul>
+        </div>
+      </div>
+      <div class="workout-grid" id="workout-grid"></div>
+    </section>
+
+    <section id="tools" class="view">
+      <div class="bowl-library">
+        <div class="lib-head">
+          <div class="lib-icon">🥣</div>
+          <div class="lib-head-text">
+            <h2>Smoothie Bowl <em>Library</em></h2>
+            <p>Swap any morning bowl in your plan with one of these. All built on a Greek yogurt + sattu base — roughly 22g protein, no whey, gut-friendly.</p>
+          </div>
+        </div>
+        <div class="bowl-grid">
+
+          <div class="bowl-card">
+            <div class="bowl-thumb">🍌</div>
+            <div class="bowl-body">
+              <span class="bowl-flag in-plan">In plan · Mon</span>
+              <h4>Banana-Walnut</h4>
+              <p class="bowl-ing">200g Greek yogurt + 60g banana + 1 tbsp sattu + cinnamon + 1 tsp chia + monk fruit</p>
+              <p class="bowl-top">Top: 2 walnut halves, 1 tbsp oats, ½ tsp coconut</p>
+              <div class="bowl-stats">
+                <span class="bowl-pill k">290 kcal</span>
+                <span class="bowl-pill p">22g P</span>
+                <span class="bowl-pill t">creamy</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="bowl-card">
+            <div class="bowl-thumb">🫐</div>
+            <div class="bowl-body">
+              <span class="bowl-flag in-plan">In plan · Tue</span>
+              <h4>Berry-Sattu</h4>
+              <p class="bowl-ing">200g Greek yogurt + 80g mixed berries + 1.5 tbsp sattu + 50g banana + 1 tsp chia</p>
+              <p class="bowl-top">Top: 1 tbsp oats, 2 walnut halves, ½ tsp coconut</p>
+              <div class="bowl-stats">
+                <span class="bowl-pill k">320 kcal</span>
+                <span class="bowl-pill p">23g P</span>
+                <span class="bowl-pill t">antioxidant</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="bowl-card">
+            <div class="bowl-thumb">🥭</div>
+            <div class="bowl-body">
+              <span class="bowl-flag in-plan">In plan · Thu</span>
+              <h4>Papaya-Yogurt</h4>
+              <p class="bowl-ing">150g papaya + 200g Greek yogurt + 1 tbsp sattu + 1 tsp chia + monk fruit</p>
+              <p class="bowl-top">Top: 5g pumpkin seeds, 1 tbsp oats</p>
+              <div class="bowl-stats">
+                <span class="bowl-pill k">295 kcal</span>
+                <span class="bowl-pill p">24g P</span>
+                <span class="bowl-pill t">gut reset</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="bowl-card">
+            <div class="bowl-thumb">🍎</div>
+            <div class="bowl-body">
+              <span class="bowl-flag in-plan">In plan · Fri</span>
+              <h4>Apple-Cinnamon</h4>
+              <p class="bowl-ing">200g Greek yogurt + 80g apple + 1 tbsp sattu + ½ tsp cinnamon + pinch ginger + chia</p>
+              <p class="bowl-top">Top: 2 walnut halves, 1 tbsp oats, ½ tsp coconut</p>
+              <div class="bowl-stats">
+                <span class="bowl-pill k">310 kcal</span>
+                <span class="bowl-pill p">22g P</span>
+                <span class="bowl-pill t">warming</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="bowl-card">
+            <div class="bowl-thumb">🍍</div>
+            <div class="bowl-body">
+              <span class="bowl-flag new">Alternate</span>
+              <h4>Pineapple-Mint</h4>
+              <p class="bowl-ing">200g Greek yogurt + 80g pineapple + 1 tbsp sattu + 5 mint leaves + lime + monk fruit</p>
+              <p class="bowl-top">Top: 1 tsp chia, ½ tsp coconut, 5g pumpkin seeds</p>
+              <div class="bowl-stats">
+                <span class="bowl-pill k">285 kcal</span>
+                <span class="bowl-pill p">22g P</span>
+                <span class="bowl-pill t">bromelain · digestion</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="bowl-card">
+            <div class="bowl-thumb">🌸</div>
+            <div class="bowl-body">
+              <span class="bowl-flag new">Alternate</span>
+              <h4>Pomegranate-Almond</h4>
+              <p class="bowl-ing">200g Greek yogurt + 50g pomegranate + 1 tbsp sattu + 4 soaked almonds blended + chia</p>
+              <p class="bowl-top">Top: 1 tbsp oats, 2 walnut halves, coconut</p>
+              <div class="bowl-stats">
+                <span class="bowl-pill k">300 kcal</span>
+                <span class="bowl-pill p">23g P</span>
+                <span class="bowl-pill t">anti-inflammatory</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="bowl-card">
+            <div class="bowl-thumb">🍐</div>
+            <div class="bowl-body">
+              <span class="bowl-flag new">Alternate</span>
+              <h4>Pear-Cardamom</h4>
+              <p class="bowl-ing">200g Greek yogurt + 100g pear + 1 tbsp sattu + 2 cardamom pods (crushed) + monk fruit</p>
+              <p class="bowl-top">Top: 2 walnut halves, 1 tbsp oats, ½ tsp coconut</p>
+              <div class="bowl-stats">
+                <span class="bowl-pill k">290 kcal</span>
+                <span class="bowl-pill p">22g P</span>
+                <span class="bowl-pill t">gentle on gut</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="bowl-card">
+            <div class="bowl-thumb">🥥</div>
+            <div class="bowl-body">
+              <span class="bowl-flag new">Alternate</span>
+              <h4>Coconut-Date</h4>
+              <p class="bowl-ing">200g Greek yogurt + 2 deseeded dates blended + 1 tbsp sattu + 1 tsp coconut + vanilla</p>
+              <p class="bowl-top">Top: 3 roasted almonds, 1 tbsp oats, coconut flakes</p>
+              <div class="bowl-stats">
+                <span class="bowl-pill k">330 kcal</span>
+                <span class="bowl-pill p">23g P</span>
+                <span class="bowl-pill t">energy-dense</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="tools-grid">
+        <div class="tool-card blue">
+          <div class="icon-pill">💧</div>
+          <h3>Hydration <em>map</em></h3>
+          <p class="lead">3–3.5L daily · more on gym days · pinch of pink salt + lemon during workouts.</p>
+          <div class="hyd-grid">
+            <div class="hyd-row"><div class="t">Wake-up</div><div class="v">500ml warm</div></div>
+            <div class="hyd-row"><div class="t">Work hours</div><div class="v">250ml/hr</div></div>
+            <div class="hyd-row"><div class="t">During gym</div><div class="v">500–750ml + salt</div></div>
+            <div class="hyd-row"><div class="t">After dinner</div><div class="v">200ml warm</div></div>
+          </div>
+        </div>
+
+        <div class="tool-card teal">
+          <div class="icon-pill">🏠</div>
+          <h3>Make at <em>home</em></h3>
+          <p class="lead">Save money. Control quality. Cleaner than store-bought. All from regular toned/full-fat milk and basic pantry items.</p>
+          <ul class="recipe-list">
+            <li>
+              <div class="r-name">Curd / Dahi — 1 cup</div>
+              <div class="r-step">Boil 200ml full-fat milk, cool to body temp (warm but not hot to touch). Stir in 1 tsp starter curd, cover with lid. Leave at room temp 6–8 hrs (longer in winter). Refrigerate once set.</div>
+            </li>
+            <li>
+              <div class="r-name">Greek yogurt / Hung curd — 120g</div>
+              <div class="r-step">Tie 200g regular curd in clean muslin/cotton cloth, hang over a bowl 2–3 hrs at room temp. The whey drips out, leaving thick creamy yogurt. Use straight in smoothie bowls and lassis.</div>
+            </li>
+            <li>
+              <div class="r-name">Buttermilk / Chaas — 200ml</div>
+              <div class="r-step">Whisk 50g curd with 150ml chilled water till frothy. Add ½ tsp roasted jeera powder, pinch of black salt, 4–5 chopped curry leaves, coriander. Serve cold.</div>
+            </li>
+            <li>
+              <div class="r-name">Paneer — 100g</div>
+              <div class="r-step">Boil 500ml full-fat milk. Once boiling, lower flame, add 1 tbsp lemon juice or vinegar, stir gently. Milk will split into curds + whey within 30 sec. Strain through muslin, rinse with cold water to remove sourness, gather edges and press flat under a heavy bowl for 30 min.</div>
+            </li>
+            <li>
+              <div class="r-name">Sprouted moong — 100g</div>
+              <div class="r-step">Soak 50g green moong overnight in plenty of water. Drain, rinse, tie in slightly damp cloth. Leave in warm spot (kitchen counter) for 24–36 hrs. Done when 0.5–1 cm white sprouts appear. Refrigerate up to 3 days.</div>
+            </li>
+            <li>
+              <div class="r-name">Sattu drink — 250ml</div>
+              <div class="r-step">Whisk 1.5 tbsp roasted sattu powder into 250ml chilled water till smooth and lumpless. Add juice of ½ lemon, pinch of black salt, ½ tsp roasted jeera powder, chopped mint. Serve immediately over ice.</div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="tool-card pink">
+          <div class="icon-pill">🍬</div>
+          <h3>Craving <em>killers</em></h3>
+          <p class="lead">For when sugar urges hit. Most of these stop the craving in 5 minutes.</p>
+          <ul class="tool-list">
+            <li>Chew 1 tsp jeera + saunf — kills sweet cravings fast</li>
+            <li>Cinnamon + monk fruit in warm water</li>
+            <li>Hung curd + monk fruit + cardamom = "shrikhand"</li>
+            <li>Frozen blueberries straight from freezer</li>
+            <li>Black coffee with cinnamon + monk fruit</li>
+            <li>Brush teeth — the mint nukes cravings instantly</li>
+            <li>Max 2 dry dates only if truly desperate</li>
+            <li><strong>Sleep 7+ hours</strong> — under-sleep doubles next-day cravings</li>
+          </ul>
+        </div>
+
+        <div class="tool-card green">
+          <div class="icon-pill">🌱</div>
+          <h3>Anti-bloat <em>protocol</em></h3>
+          <p class="lead">Build these habits in slowly. They compound over weeks.</p>
+          <ul class="tool-list">
+            <li>Use cumin, ajwain, hing, fennel daily</li>
+            <li>Avoid raw onion, raw garlic, raw cabbage</li>
+            <li>No ice-cold water with meals</li>
+            <li>Chew slowly — 20 chews per bite</li>
+            <li>Walk 5–10 min after every main meal</li>
+            <li>Stop eating 2.5 hrs before bed</li>
+            <li>Cook cruciferous well — don't eat raw</li>
+            <li>One glass <strong>buttermilk daily</strong> for gut health</li>
+          </ul>
+        </div>
+
+        <div class="tool-card purple">
+          <div class="icon-pill">🪨</div>
+          <h3>Stone-safe <em>swaps</em></h3>
+          <p class="lead">Low-oxalate alternatives to common high-oxalate foods.</p>
+          <ul class="tool-list">
+            <li><strong>Spinach</strong> → mushroom, broccoli, cauliflower</li>
+            <li><strong>Beetroot</strong> → carrot, capsicum</li>
+            <li><strong>Peanuts</strong> → 5 soaked almonds + 2 walnuts</li>
+            <li><strong>Sweet potato</strong> → carrot, pumpkin (limited)</li>
+            <li><strong>Black tea</strong> → green tea, herbal infusion</li>
+            <li><strong>Raw cocoa</strong> → cinnamon, cardamom</li>
+            <li><strong>Okra</strong> → green beans, cabbage</li>
+            <li><strong>3–3.5L water</strong> daily flushes oxalates</li>
+          </ul>
+        </div>
+
+        <div class="tool-card orange">
+          <div class="icon-pill">⚡</div>
+          <h3>Gym-day <em>fuel</em></h3>
+          <p class="lead">Exact sequence for your 5:30–6 PM gym time.</p>
+          <ul class="tool-list">
+            <li><strong>4:30 PM</strong> — Black coffee + 1 banana OR 2 dates</li>
+            <li><strong>During</strong> — Water + pink salt + lemon</li>
+            <li><strong>6:50 PM</strong> — Sattu-yogurt lassi within 15 min</li>
+            <li><strong>Leg days</strong> — Add a banana post-workout</li>
+            <li><strong>7:45 PM</strong> — Light, protein-led dinner</li>
+            <li>Skip pre-workout food only if doing fasted cardio</li>
+          </ul>
+        </div>
+
+        <div class="tool-card yellow">
+          <div class="icon-pill">📊</div>
+          <h3>Weekly <em>check-in</em></h3>
+          <p class="lead">Every Sunday morning, same time. Track all of these — not just weight.</p>
+          <ul class="tool-list">
+            <li>Weight (single measurement, not daily)</li>
+            <li>Photos — front, side, back</li>
+            <li>Waist measurement</li>
+            <li>Energy level 1–10</li>
+            <li>Sleep quality 1–10</li>
+            <li>Hunger level 1–10</li>
+            <li><strong>Target:</strong> 0.4–0.7 kg loss/week</li>
+            <li><strong>&gt;1 kg/week</strong> → eat slightly more (you'll lose muscle)</li>
+          </ul>
+        </div>
+
+        <div class="tool-card red wide">
+          <div class="icon-pill">🤒</div>
+          <h3>When throat is <em>bad</em></h3>
+          <p class="lead">Cold or sore throat? Switch to this menu for 2–3 days.</p>
+
+          <div class="sick-rules">
+            <span class="sick-rule">🔥 Warm only</span>
+            <span class="sick-rule">🥄 Soft &amp; smooth</span>
+            <span class="sick-rule">🚫 Skip the gym</span>
+            <span class="sick-rule">📉 Lower protein OK</span>
+          </div>
+
+          <div class="sick-grid">
+
+            <div class="sick-block drinks">
+              <div class="sick-block-head">
+                <span class="sick-block-icon">☕</span>
+                <span class="sick-block-title">Soothing drinks</span>
+              </div>
+              <div class="sick-item">
+                <div class="sick-item-name">Haldi doodh</div>
+                <div class="sick-item-desc">200ml warm milk + ¼ tsp turmeric + pinch black pepper + monk fruit. Best at bedtime.</div>
+              </div>
+              <div class="sick-item">
+                <div class="sick-item-name">Ginger-tulsi kadha</div>
+                <div class="sick-item-desc">Boil 5 tulsi + 2 ginger slices + cinnamon + 4 cloves in 200ml water 5 min. Strain, add 1 tsp honey.</div>
+              </div>
+              <div class="sick-item">
+                <div class="sick-item-name">Roasted jeera water</div>
+                <div class="sick-item-desc">1 tsp roasted jeera in 200ml hot water. Sip slowly over 30 min.</div>
+              </div>
+              <div class="sick-item">
+                <div class="sick-item-name">Honey-lemon water</div>
+                <div class="sick-item-desc">200ml warm (not boiling) water + 1 tsp honey + ½ lemon. Skip lemon if throat is raw.</div>
+              </div>
+              <div class="sick-item">
+                <div class="sick-item-name">Mulethi tea</div>
+                <div class="sick-item-desc">½ tsp mulethi (licorice) in 200ml hot water 5 min, strain. Classic throat coater.</div>
+              </div>
+            </div>
+
+            <div class="sick-block meals">
+              <div class="sick-block-head">
+                <span class="sick-block-icon">🍲</span>
+                <span class="sick-block-title">Easy warm meals</span>
+              </div>
+              <div class="sick-item">
+                <div class="sick-item-name">Moong dal soup</div>
+                <div class="sick-item-desc">Pressure-cook 30g moong + ginger + jeera + turmeric in 400ml water, blend smooth. Replaces lunch or dinner.</div>
+              </div>
+              <div class="sick-item">
+                <div class="sick-item-name">Idli + thin sambar</div>
+                <div class="sick-item-desc">3 soft idlis + small sambar bowl. Skip the chili-heavy chutney.</div>
+              </div>
+              <div class="sick-item">
+                <div class="sick-item-name">Warm oats porridge</div>
+                <div class="sick-item-desc">30g oats + 200ml warm milk + cinnamon + 1 tsp honey. Top with crushed almonds.</div>
+              </div>
+              <div class="sick-item">
+                <div class="sick-item-name">Soft scrambled eggs</div>
+                <div class="sick-item-desc">2 eggs gently scrambled with grated ginger + black pepper + ½ tsp ghee.</div>
+              </div>
+              <div class="sick-item">
+                <div class="sick-item-name">Soft dal-rice</div>
+                <div class="sick-item-desc">Well-cooked moong dal + 30g rice + jeera-hing-ghee tadka. Comfort dinner.</div>
+              </div>
+              <div class="sick-item">
+                <div class="sick-item-name">Banana + warm milk</div>
+                <div class="sick-item-desc">Mash 1 banana into 150ml warm milk + ½ tsp honey + cinnamon. Late-night soother.</div>
+              </div>
+            </div>
+
+            <div class="sick-block smoothie">
+              <div class="sick-block-head">
+                <span class="sick-block-icon">🥣</span>
+                <span class="sick-block-title">Warm smoothie swaps</span>
+              </div>
+              <div class="sick-item">
+                <div class="sick-item-name">Sattu-cinnamon warm latte</div>
+                <div class="sick-item-desc">1 tbsp sattu + 200ml warm milk + 1 tsp honey + cinnamon. Top crushed almonds. Closest to your usual bowl.</div>
+                <div class="sick-item-macros">
+                  <span class="sick-item-macro">200 kcal</span>
+                  <span class="sick-item-macro">12g P</span>
+                </div>
+              </div>
+              <div class="sick-item">
+                <div class="sick-item-name">Banana-cinnamon warm</div>
+                <div class="sick-item-desc">Blend 200ml warm milk + ½ banana + cinnamon + 1 tsp honey + 1 tbsp cooked oats.</div>
+                <div class="sick-item-macros">
+                  <span class="sick-item-macro">210 kcal</span>
+                  <span class="sick-item-macro">8g P</span>
+                </div>
+              </div>
+              <div class="sick-item">
+                <div class="sick-item-name">Turmeric latte bowl</div>
+                <div class="sick-item-desc">Warm milk + ¼ tsp turmeric + pinch pepper + honey + 5 crushed almonds + cardamom. Most anti-inflammatory.</div>
+                <div class="sick-item-macros">
+                  <span class="sick-item-macro">190 kcal</span>
+                  <span class="sick-item-macro">8g P</span>
+                </div>
+              </div>
+              <div class="sick-item">
+                <div class="sick-item-name">Oats-date warm bowl</div>
+                <div class="sick-item-desc">25g cooked oats + 200ml warm milk + 2 deseeded dates + cinnamon, blended lightly. Heartiest option.</div>
+                <div class="sick-item-macros">
+                  <span class="sick-item-macro">240 kcal</span>
+                  <span class="sick-item-macro">9g P</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="sick-block avoid">
+              <div class="sick-block-head">
+                <span class="sick-block-icon">⚠️</span>
+                <span class="sick-block-title">Avoid for now</span>
+              </div>
+              <div class="sick-item"><div class="sick-item-name">Cold smoothie bowls</div></div>
+              <div class="sick-item"><div class="sick-item-name">Cold buttermilk &amp; chaas</div></div>
+              <div class="sick-item"><div class="sick-item-name">Pre-workout black coffee</div></div>
+              <div class="sick-item"><div class="sick-item-name">Iced water with meals</div></div>
+              <div class="sick-item"><div class="sick-item-name">Spicy, fried, processed food</div></div>
+              <div class="sick-item"><div class="sick-item-name">Gym sessions — walks only</div></div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="cheats" class="view">
+      <div class="cheats-hero">
+        <div class="cheats-hero-inner">
+          <h2>Built-in <em>flex.</em></h2>
+          <p>Two controlled cheat meals weekly — one Friday or Saturday evening, one Sunday lunch — plus 1–2 low-cal alcohol options. This is what makes the plan last 6 months instead of 3 weeks.</p>
+        </div>
+      </div>
+
+      <div class="cheat-sect">
+        <div class="cheat-sect-head">
+          <span class="num">01</span>
+          <h3>Friday / Saturday cheat dinner</h3>
+          <span class="meta">cap 550 kcal</span>
+        </div>
+        <div class="cheat-options" id="cheat-1"></div>
+      </div>
+
+      <div class="cheat-sect">
+        <div class="cheat-sect-head">
+          <span class="num">02</span>
+          <h3>Sunday cheat lunch</h3>
+          <span class="meta">cap 600 kcal</span>
+        </div>
+        <div class="cheat-options" id="cheat-2"></div>
+      </div>
+
+      <div class="cheat-sect">
+        <div class="cheat-sect-head">
+          <span class="num">03</span>
+          <h3>Low-calorie drinks</h3>
+          <span class="meta">max 2/night</span>
+        </div>
+        <div class="drink-grid" id="drinks"></div>
+      </div>
+
+      <div class="tool-card pink">
+        <div class="icon-pill">🍷</div>
+        <h3>Rules for drinking <em>nights</em></h3>
+        <ul class="tool-list">
+          <li>Eat a protein-heavy dinner <strong>before</strong> drinking</li>
+          <li>1 glass water between each drink</li>
+          <li>Skip beer (150–200 kcal each + bloat) and cocktails (300–500 kcal)</li>
+          <li>No more than 2 drinks on a single night</li>
+          <li>Next morning: extra 500ml water + electrolytes + plain breakfast</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    Built for your 5:30 AM shift · Gym 5:30 PM · Reset weekly
+    <button class="reset" onclick="resetProgress()">Reset all checks</button>
+  </footer>
+</div>
+
+<script>
+const MILK_COFFEE = { time: "5:30 AM", cat: "Morning Coffee", thumb: "☕", thumbCls: "coffee", title: "Morning Milk Coffee", desc: "Skim milk coffee to start your 5:30 AM shift — light, no sugar.", calories: 35, protein: 4, tags: ["energy","calcium"], ingredients: ["Black coffee — 1 cup, freshly brewed", "Skim or toned milk — 100ml, warmed", "Monk fruit / stevia (optional)", "Pinch of cinnamon (optional)"], recipe: "Brew coffee strong, top with warm milk. Skim and toned milk are both cheap and easy to find — Amul Slim, Mother Dairy Healthy Slim, Nestle a+ Slim all work. Skip sugar — monk fruit if needed. Cinnamon adds an anti-inflammatory bonus." };
+
+const NUT_ALTS_BASE = [
+  "5 soaked almonds + 2 walnuts (~80 kcal, 3g P)",
+  "Mixed seeds — 1 tbsp pumpkin + 1 tbsp sunflower (~85 kcal, 4g P)",
+  "Roasted makhana — 20 pieces + 2 almonds (~70 kcal, 2g P)",
+  "Roasted chana — 1 tbsp (~50 kcal, 3g P)",
+  "Coconut flakes — 1 tbsp + 1 tsp ground flax (~70 kcal, 2g P)",
+  "Sprouted moong — 2 tbsp + lemon + jeera (~40 kcal, 3g P)"
+];
+
+const days = [
+  {
+    name: "Monday", short: "Mon", type: "Pull Day", typeClass: "pull",
+    totalCal: 1385, totalProtein: 100,
+    meals: [
+      MILK_COFFEE,
+      { time: "7:00 AM", cat: "Pre-breakfast", thumb: "🌰", thumbCls: "nuts", title: "Soaked Almonds + Walnuts", desc: "Classic combo — soaked overnight to lower oxalate.", calories: 80, protein: 3, tags: ["kidney","energy"], ingredients: ["5 soaked almonds", "2 soaked walnuts"], recipe: "Soak overnight in plain water, drain, eat first thing. Soaking reduces oxalate significantly.", alternatives: NUT_ALTS_BASE },
+      { time: "7:30 AM", cat: "Breakfast", thumb: "🥣", thumbCls: "bowl", title: "Banana-Walnut Smoothie Bowl", desc: "Creamy, hearty bowl — Indian whey-free with sattu for protein.", calories: 290, protein: 22, tags: ["protein","gut","fiber"], ingredients: ["Greek yogurt low-fat — 200g", "Banana — 60g", "Roasted sattu — 1 tbsp (10g)", "Cinnamon, monk fruit", "Chia seeds — 1 tsp", "Toppings: 2 walnut halves, 1 tbsp rolled oats, ½ tsp coconut flakes"], recipe: "Blend yogurt + banana + sattu + cinnamon + monk fruit + chia till thick. Pour into a bowl. Top with walnut, oats, coconut. Sattu replaces whey beautifully and adds nutty depth + 7g protein." },
+      { time: "10:30 AM", cat: "Snack", thumb: "☕", thumbCls: "snack", title: "Black Coffee + Apple", desc: "Light caffeine hit with fibre-rich fruit.", calories: 85, protein: 1, tags: ["energy","fiber"], ingredients: ["Black coffee — 1 cup, no sugar (monk fruit if needed)", "Small apple — 100g, whole"], recipe: "Sip slow. Eat apple whole — skin has the fibre." },
+      { time: "1:30 PM", cat: "Lunch", thumb: "🍱", thumbCls: "lunch", title: "Tandoori Paneer + Phulka + Raita", desc: "Char-grilled low-fat paneer with cooling cucumber raita.", calories: 340, protein: 28, tags: ["protein","belly","veg","gut"], ingredients: ["Low-fat paneer — 120g, cubed", "Curd 30g + tandoori masala + ginger-garlic for marinade", "Phulka — 1 small, 30g (regular atta)", "Hung curd — 80g + grated cucumber 50g + jeera powder, black salt", "Oil for grill — ½ tsp"], recipe: "Marinate paneer in curd + tandoori masala for 20 min. Pan-grill on tava in ½ tsp oil till charred edges, 4 min each side. Serve with raita and phulka." },
+      { time: "4:30 PM", cat: "Pre-workout", thumb: "🍌", thumbCls: "preworkout", title: "Coffee + Banana", desc: "Caffeine for output, fast carbs for fuel — 60 min before gym.", calories: 100, protein: 1, tags: ["energy","fiber"], ingredients: ["Black coffee", "Small banana — 90g"], recipe: "Eat 60 min before gym so the carbs hit when you need them most." },
+      { time: "6:50 PM", cat: "Post-workout", thumb: "🥛", thumbCls: "postworkout", title: "Sattu-Yogurt Lassi", desc: "Indian whey alternative — high protein, gut-friendly, cooling.", calories: 170, protein: 22, tags: ["protein","recovery","cooling","gut"], ingredients: ["Greek yogurt low-fat — 200g", "Roasted sattu powder — 1 tbsp (10g)", "Cinnamon, monk fruit", "Water — 100ml", "Pinch of black salt"], recipe: "Blend everything till smooth and frothy. Drink within 15 min of finishing gym." },
+      { time: "7:45 PM", cat: "Dinner", thumb: "🍳", thumbCls: "dinner", title: "Tofu Bhurji + Phulka", desc: "Scrambled tofu with masala, light Indian-style.", calories: 285, protein: 19, tags: ["protein","veg","gut"], ingredients: ["Firm tofu — 130g, crumbled", "Tomato — 40g, capsicum — 30g", "Ginger, jeera, hing, turmeric", "Phulka — 1 small, 30g (regular atta)", "Oil — ½ tsp"], recipe: "Heat ½ tsp oil, splutter jeera + hing + grated ginger. Add tomato-capsicum, cook 2 min. Add crumbled tofu, turmeric, chilli, salt. Cook 3–4 min. Garnish with coriander." }
+    ]
+  },
+  {
+    name: "Tuesday", short: "Tue", type: "Push Day", typeClass: "push",
+    totalCal: 1390, totalProtein: 99,
+    meals: [
+      MILK_COFFEE,
+      { time: "7:00 AM", cat: "Pre-breakfast", thumb: "🌻", thumbCls: "seeds", title: "Mixed Seeds Mix", desc: "Pumpkin + sunflower — high zinc, low oxalate.", calories: 85, protein: 4, tags: ["kidney","energy"], ingredients: ["Pumpkin seeds — 1 tbsp (10g)", "Sunflower seeds — 1 tbsp (10g)", "Optional pinch of pink salt"], recipe: "Lightly toast on tava 2 min OR eat raw. Pumpkin seeds boost zinc + testosterone. Sunflower for vitamin E.", alternatives: NUT_ALTS_BASE },
+      { time: "7:30 AM", cat: "Breakfast", thumb: "🥣", thumbCls: "bowl", title: "Berry-Sattu Smoothie Bowl", desc: "Thick yogurt bowl with sattu and antioxidant berries.", calories: 320, protein: 23, tags: ["protein","gut","summer"], ingredients: ["Greek yogurt low-fat — 200g", "Blueberries — 50g", "Strawberries — 30g", "Roasted sattu powder — 1.5 tbsp (15g)", "Banana — 50g", "Chia seeds — 1 tsp", "Monk fruit", "Toppings: 1 tbsp rolled oats, 2 walnut halves, ½ tsp coconut flakes"], recipe: "Blend yogurt, banana, half the berries, sattu, chia, monk fruit till thick. Pour into bowl. Top with remaining whole berries, oats, walnut, coconut." },
+      { time: "10:30 AM", cat: "Snack", thumb: "🥛", thumbCls: "snack", title: "Salted Buttermilk", desc: "Cooling probiotic — perfect mid-morning.", calories: 50, protein: 3, tags: ["cooling","gut","summer"], ingredients: ["Buttermilk — 200ml", "Black salt, jeera powder, curry leaf"], recipe: "Whisk and serve cold. Gut-friendly hit. (Make-at-home recipe in Tools tab.)" },
+      { time: "1:30 PM", cat: "Lunch", thumb: "🥘", thumbCls: "lunch", title: "Soya Chunks Sabzi + Phulka + Salad", desc: "Lean plant protein in light tomato gravy.", calories: 365, protein: 28, tags: ["protein","fiber","veg"], ingredients: ["Soya chunks (dry) — 30g, boiled and squeezed", "Onion — 30g, tomato — 50g, capsicum — 30g", "Ginger-garlic paste, turmeric, garam masala", "Oil — 1 tsp", "Phulka — 1, 30g (regular atta)", "Salad: cucumber 100g, carrot, lemon"], recipe: "Boil soya chunks 5 min, squeeze well to remove water. Sauté onion-garlic in 1 tsp oil. Add tomato + capsicum + masalas. Add chunks with 100ml water, simmer 7 min covered." },
+      { time: "4:30 PM", cat: "Pre-workout", thumb: "📿", thumbCls: "preworkout", title: "Coffee + Dates + Apple", desc: "Quick carb combo for pushing heavy on press days.", calories: 100, protein: 1, tags: ["energy"], ingredients: ["Black coffee", "1 date — 15g", "Small apple"], recipe: "Eat 50–60 min before gym." },
+      { time: "6:50 PM", cat: "Post-workout", thumb: "🥛", thumbCls: "postworkout", title: "Sattu-Yogurt Lassi", desc: "Same recovery drink as Monday.", calories: 170, protein: 22, tags: ["protein","recovery","cooling","gut"], ingredients: ["Greek yogurt low-fat — 200g", "Roasted sattu — 1 tbsp", "Cinnamon, monk fruit, water"], recipe: "Blend smooth, drink within 15 min." },
+      { time: "7:45 PM", cat: "Dinner", thumb: "🍲", thumbCls: "dinner", title: "Lemony Dal Tadka + Phulka + Salad", desc: "Classic comfort — moong dal with lemon-jeera tadka.", calories: 265, protein: 14, tags: ["gut","fiber","veg"], ingredients: ["Yellow moong dal — 40g (dry)", "Tomato — 50g, ginger, garlic", "Jeera, hing, turmeric, curry leaf", "Ghee — 1 tsp (for tadka)", "Coriander, juice of ½ lemon", "Phulka — 1, 30g (regular atta)", "Cucumber-carrot salad — 100g"], recipe: "Pressure-cook dal with ginger + tomato + turmeric + 300ml water + salt — 3 whistles. In a small pan heat 1 tsp ghee, splutter jeera + hing + crushed garlic till golden, pour over dal. Finish with lemon and coriander. Serve with phulka + salad." }
+    ]
+  },
+  {
+    name: "Wednesday", short: "Wed", type: "Leg Day", typeClass: "legs",
+    totalCal: 1380, totalProtein: 99,
+    meals: [
+      MILK_COFFEE,
+      { time: "7:00 AM", cat: "Pre-breakfast", thumb: "🪷", thumbCls: "makhana", title: "Roasted Makhana + Almonds", desc: "Crunchy fox nuts — light yet filling.", calories: 75, protein: 2, tags: ["kidney","gut","energy"], ingredients: ["Makhana (fox nuts) — 20 pieces, dry-roasted", "Soaked almonds — 2", "Pinch of pink salt + black pepper"], recipe: "Dry-roast makhana on low flame 3 min till crisp. Season with pink salt and black pepper while warm. Eat with the soaked almonds.", alternatives: NUT_ALTS_BASE },
+      { time: "7:30 AM", cat: "Breakfast", thumb: "🍳", thumbCls: "egg", title: "Veggie Masala Omelette + Phulka", desc: "Egg day — 2 eggs with veggies and a soft phulka.", calories: 260, protein: 17, tags: ["protein","belly","gut"], ingredients: ["Whole eggs — 2", "Onion — 20g, tomato — 30g, capsicum — 20g, chopped fine", "Green chili, coriander, turmeric, jeera, black pepper", "Oil — ½ tsp", "Phulka — 1 small, 30g (regular atta)"], recipe: "Beat eggs with turmeric, jeera, pepper, salt. Heat ½ tsp oil, add chopped veggies, sauté 1 min. Pour in egg, cook 2 min covered on low. Flip, cook 30 sec more. Roll inside phulka or eat alongside." },
+      { time: "10:30 AM", cat: "Snack", thumb: "🍐", thumbCls: "snack", title: "Coffee + Pear", desc: "Light fruit + caffeine combo.", calories: 80, protein: 1, tags: ["energy","fiber"], ingredients: ["Black coffee", "Small pear or apple — 100g"], recipe: "Skip if not hungry — listen to your body." },
+      { time: "1:30 PM", cat: "Lunch", thumb: "🥘", thumbCls: "lunch", title: "Paneer Bhurji Curry + Phulka", desc: "Crumbled paneer in tomato masala — protein-rich, no chicken.", calories: 370, protein: 30, tags: ["protein","belly","veg","gut"], ingredients: ["Low-fat paneer — 120g, crumbled", "Onion 25g, tomato 70g, ginger-garlic", "Curd — 30g", "Garam masala, turmeric, jeera, coriander", "Oil — 1 tsp", "Phulka — 1, 30g (regular atta)"], recipe: "Sauté onion-ginger-garlic in 1 tsp oil. Add tomato + curd + masalas, cook till oil separates. Add crumbled paneer + 80ml water, simmer 5 min. Garnish with coriander." },
+      { time: "4:30 PM", cat: "Pre-workout", thumb: "📿", thumbCls: "preworkout", title: "Coffee + 2 Dates", desc: "Leg days need extra fast carbs.", calories: 80, protein: 1, tags: ["energy"], ingredients: ["Black coffee", "Dry dates — 2, 20g"], recipe: "Dates load glycogen well — critical for squats and lunges." },
+      { time: "During", cat: "During workout", thumb: "🧂", thumbCls: "during", title: "Electrolyte Water", desc: "Critical on leg days — sweat is heavy, cramps are real.", calories: 5, protein: 0, tags: ["electrolyte","summer"], ingredients: ["Water — 500ml", "Pinch pink salt", "Squeeze of ½ lemon"], recipe: "Sip throughout the workout. Replaces sodium lost to sweat." },
+      { time: "6:50 PM", cat: "Post-workout", thumb: "🍌", thumbCls: "postworkout", title: "Sattu Drink + Banana", desc: "Leg day = add carbs. Banana replaces glycogen.", calories: 220, protein: 23, tags: ["protein","recovery"], ingredients: ["Greek yogurt — 200g", "Sattu — 1 tbsp", "Small banana — 90g", "Cinnamon, monk fruit"], recipe: "Blend yogurt + sattu + monk fruit smooth. Eat banana on the side or blend it in. Non-negotiable after heavy legs." },
+      { time: "7:45 PM", cat: "Dinner", thumb: "🍲", thumbCls: "dinner", title: "Mixed Veg Soup + Paneer Tikka", desc: "Light tomato-pepper broth with paneer for protein.", calories: 270, protein: 22, tags: ["gut","protein","cooling"], ingredients: ["Carrot — 50g, capsicum — 30g, mushroom — 50g, cauliflower — 50g", "Garlic 1 clove, ginger, jeera, black pepper", "Tomato — 40g, vegetable stock or water — 250ml", "Low-fat paneer — 100g, cubed", "Curd 1 tbsp + tandoori masala for marinade", "Oil — ½ tsp"], recipe: "Sauté garlic + ginger in ½ tsp oil. Add veggies + tomato + water, simmer 8 min. Season with pepper + salt. Marinate paneer 15 min, pan-grill till charred edges. Serve hot soup with paneer on the side." }
+    ]
+  },
+  {
+    name: "Thursday", short: "Thu", type: "Pull Day", typeClass: "pull",
+    totalCal: 1395, totalProtein: 97,
+    meals: [
+      MILK_COFFEE,
+      { time: "7:00 AM", cat: "Pre-breakfast", thumb: "🌰", thumbCls: "nuts", title: "Soaked Almonds + Walnuts", desc: "Classic combo again — pull days need amino acids.", calories: 80, protein: 3, tags: ["kidney","energy"], ingredients: ["5 soaked almonds", "2 soaked walnuts"], recipe: "Soaked overnight, drained, eaten plain.", alternatives: NUT_ALTS_BASE },
+      { time: "7:30 AM", cat: "Breakfast", thumb: "🥣", thumbCls: "bowl", title: "Papaya-Yogurt Smoothie Bowl", desc: "Gut-reset bowl with digestive enzyme-rich papaya.", calories: 295, protein: 24, tags: ["gut","protein","summer"], ingredients: ["Papaya — 150g, cubed", "Greek yogurt low-fat — 200g", "Sattu powder — 1 tbsp", "Chia — 1 tsp", "Toppings: 5g pumpkin seeds, 1 tbsp rolled oats, monk fruit"], recipe: "Blend papaya + yogurt + sattu + monk fruit till thick. Pour into bowl. Top with pumpkin seeds, oats, chia. Papaya's enzymes reset gut overnight." },
+      { time: "10:30 AM", cat: "Snack", thumb: "🥛", thumbCls: "snack", title: "Salted Buttermilk", desc: "Cooling probiotic drink.", calories: 50, protein: 3, tags: ["cooling","gut","summer"], ingredients: ["Buttermilk — 200ml", "Black salt, jeera, curry leaf"], recipe: "Cold and probiotic — perfect mid-morning." },
+      { time: "1:30 PM", cat: "Lunch", thumb: "🥗", thumbCls: "lunch", title: "Chana Masala + Phulka + Salad", desc: "Indian chickpea curry — high fibre, high protein, no chicken.", calories: 380, protein: 22, tags: ["protein","fiber","veg","gut"], ingredients: ["Boiled kala chana — 80g cooked", "Onion 30g, tomato 60g, ginger-garlic", "Garam masala, turmeric, jeera, coriander", "Oil — 1 tsp", "Phulka — 1, 30g (regular atta)", "Hung curd — 80g (raita-style with jeera)", "Salad: cucumber 100g + carrot + lemon"], recipe: "Soak chana 6+ hrs, pressure cook 4 whistles till soft. Sauté onion-ginger-garlic in 1 tsp oil. Add tomato + masalas, cook till oil separates. Add chana + 100ml chana water, simmer 8 min. Garnish coriander. Serve with phulka + salad + curd." },
+      { time: "4:30 PM", cat: "Pre-workout", thumb: "🍌", thumbCls: "preworkout", title: "Coffee + Banana", desc: "Standard pre-pull combo.", calories: 100, protein: 1, tags: ["energy"], ingredients: ["Black coffee", "Small banana"], recipe: "60 min before gym." },
+      { time: "6:50 PM", cat: "Post-workout", thumb: "🥛", thumbCls: "postworkout", title: "Sattu-Yogurt Lassi", desc: "Standard recovery drink.", calories: 170, protein: 22, tags: ["protein","recovery","cooling","gut"], ingredients: ["Greek yogurt — 200g", "Sattu — 1 tbsp", "Cinnamon, monk fruit, water"], recipe: "Blend smooth, drink within 15 min." },
+      { time: "7:45 PM", cat: "Dinner", thumb: "🍢", thumbCls: "dinner", title: "Tofu Tikka + Sautéed Veggies", desc: "Marinated grilled tofu with crunchy veggies.", calories: 270, protein: 18, tags: ["protein","veg","belly","gut"], ingredients: ["Firm tofu — 130g, cubed", "Curd 30g + tandoori masala + ginger-garlic for marinade", "Capsicum — 60g, mushroom — 60g, broccoli — 60g", "Garlic, black pepper, lemon", "Oil — 1 tsp total"], recipe: "Marinate tofu 20 min. Pan-grill in ½ tsp oil till charred edges, 3 min each side. In another pan, sauté veggies in remaining ½ tsp oil + garlic + pepper, 4 min. Squeeze lemon over both before serving." }
+    ]
+  },
+  {
+    name: "Friday", short: "Fri", type: "Push Day · Cheat Night", typeClass: "push",
+    totalCal: 1575, totalProtein: 96,
+    meals: [
+      MILK_COFFEE,
+      { time: "7:00 AM", cat: "Pre-breakfast", thumb: "🫘", thumbCls: "chana", title: "Roasted Chana", desc: "Chickpeas — high protein, satisfyingly crunchy.", calories: 55, protein: 3, tags: ["kidney","protein"], ingredients: ["Roasted black chana — 1 tbsp (15g)", "Pinch of pink salt + chaat masala"], recipe: "Eat as-is. Keep portion small — chana has moderate oxalate so don't overdo. Adds protein variety from nut routine.", alternatives: NUT_ALTS_BASE },
+      { time: "7:30 AM", cat: "Breakfast", thumb: "🥣", thumbCls: "bowl", title: "Apple-Cinnamon Smoothie Bowl", desc: "Warming spices + crisp apple — autumn vibes any season.", calories: 310, protein: 22, tags: ["protein","fiber","gut"], ingredients: ["Greek yogurt low-fat — 200g", "Apple — 80g, cubed", "Roasted sattu — 1 tbsp (10g)", "Cinnamon — ½ tsp, ginger powder — pinch", "Chia — 1 tsp", "Monk fruit", "Toppings: 2 walnut halves, 1 tbsp rolled oats, ½ tsp coconut flakes"], recipe: "Blend yogurt + ¾ of apple + sattu + cinnamon + ginger + chia + monk fruit till thick. Pour into bowl. Top with remaining apple cubes, walnut, oats, coconut. Cinnamon is great for blood sugar." },
+      { time: "10:30 AM", cat: "Snack", thumb: "🍎", thumbCls: "snack", title: "Coffee + Apple", desc: "Standard mid-morning combo.", calories: 80, protein: 1, tags: ["energy","fiber"], ingredients: ["Black coffee", "Small apple"], recipe: "Sip and snack." },
+      { time: "1:30 PM", cat: "Lunch", thumb: "🥗", thumbCls: "lunch", title: "Paneer Chickpea Salad Bowl", desc: "Cold, crunchy, protein-packed — no chicken, no compromise.", calories: 345, protein: 25, tags: ["protein","fiber","cooling","veg"], ingredients: ["Boiled kala chana — 60g cooked", "Low-fat paneer — 60g, cubed and pan-toasted", "Cucumber 80g, carrot 40g, capsicum 30g, tomato 40g", "Lemon, jeera powder, black salt, coriander, mint", "Oil — ½ tsp"], recipe: "Toast paneer cubes in ½ tsp oil till golden. Toss with chana, all veggies, lemon, jeera, black salt, herbs. Eat cold or room temp." },
+      { time: "4:30 PM", cat: "Pre-workout", thumb: "🍌", thumbCls: "preworkout", title: "Coffee + Banana", desc: "Standard push-day fuel.", calories: 100, protein: 1, tags: ["energy"], ingredients: ["Black coffee", "Small banana"], recipe: "60 min before gym." },
+      { time: "6:50 PM", cat: "Post-workout", thumb: "🥛", thumbCls: "postworkout", title: "Sattu-Yogurt Lassi", desc: "Standard recovery drink.", calories: 170, protein: 22, tags: ["protein","recovery","gut"], ingredients: ["Greek yogurt — 200g", "Sattu — 1 tbsp", "Cinnamon, monk fruit, water"], recipe: "Blend smooth, drink within 15 min." },
+      { time: "7:45 PM", cat: "Cheat Dinner", thumb: "🎉", thumbCls: "cheat", title: "Controlled Cheat Meal", desc: "Pick ONE option from the Cheats tab — cap at 550 kcal.", calories: 480, protein: 18, tags: ["cheat"], ingredients: ["Pick ONE from Cheats tab", "Optional: 1 alcohol drink (≤120 kcal)", "Order plain rice over fried", "Skip cream-heavy curries", "Add a fresh side salad"], recipe: "Plan exactly what you'll order before you go. Eat slowly — you feel full faster than you think. Veg options only on Friday (chicken is weekend-only)." }
+    ]
+  },
+  {
+    name: "Saturday", short: "Sat", type: "Legs + Steam · Optional Cheat", typeClass: "legs",
+    totalCal: 1550, totalProtein: 112,
+    meals: [
+      MILK_COFFEE,
+      { time: "7:00 AM", cat: "Pre-breakfast", thumb: "🥥", thumbCls: "coconut", title: "Coconut + Flax Mix", desc: "Healthy fats with omega-3 boost.", calories: 70, protein: 2, tags: ["kidney","energy"], ingredients: ["Fresh or dry coconut flakes — 1 tbsp", "Ground flax seeds — 1 tsp", "Optional: 1 tsp pumpkin seeds"], recipe: "Mix and eat dry, or sprinkle into your morning coffee. Always grind flax — whole flax passes through undigested.", alternatives: NUT_ALTS_BASE },
+      { time: "7:30 AM", cat: "Breakfast", thumb: "🍳", thumbCls: "egg", title: "Egg Bhurji + Phulka", desc: "Scrambled masala eggs with a soft phulka — Saturday's egg day.", calories: 270, protein: 18, tags: ["protein","belly","gut"], ingredients: ["Whole eggs — 2", "Onion — 30g, tomato — 50g, capsicum — 20g, chopped fine", "Ginger-garlic paste, green chili, coriander", "Turmeric, jeera, garam masala, black pepper", "Oil — ½ tsp", "Phulka — 1 small, 30g (regular atta)"], recipe: "Heat ½ tsp oil, add jeera + ginger-garlic + onion, sauté 2 min till soft. Add tomato + capsicum + green chili + turmeric + garam masala, cook 2 min. Beat eggs lightly with salt + pepper, pour in, scramble gently 2–3 min till just set. Finish with coriander, serve with phulka." },
+      { time: "10:30 AM", cat: "Snack", thumb: "🥛", thumbCls: "snack", title: "Salted Buttermilk", desc: "Probiotic mid-morning hit.", calories: 50, protein: 3, tags: ["cooling","gut","summer"], ingredients: ["Buttermilk — 200ml", "Black salt + jeera + curry leaf"], recipe: "Whisk and serve cold." },
+      { time: "1:30 PM", cat: "Lunch", thumb: "🌯", thumbCls: "lunch", title: "Tandoori Paneer Wrap", desc: "Veg version of the chicken wrap — chicken's coming for dinner.", calories: 340, protein: 24, tags: ["protein","veg","belly","gut"], ingredients: ["Jowar roti or 1 small phulka — 30g", "Low-fat paneer — 100g, tandoori marinade", "Lettuce, cucumber, mint", "Mint-yogurt sauce (curd 30g + mint + jeera)", "Oil — ½ tsp"], recipe: "Marinate paneer cubes in curd + tandoori masala 20 min. Pan-grill in ½ tsp oil till charred edges, 4 min total. Roll in roti with veggies + yogurt sauce." },
+      { time: "4:30 PM", cat: "Pre-workout", thumb: "🍌", thumbCls: "preworkout", title: "Coffee + Banana", desc: "Standard pre-leg-day fuel.", calories: 100, protein: 1, tags: ["energy"], ingredients: ["Black coffee", "Small banana"], recipe: "60 min before gym." },
+      { time: "6:50 PM", cat: "Post-workout", thumb: "🍌", thumbCls: "postworkout", title: "Sattu Drink + Banana", desc: "Leg day extra carbs.", calories: 220, protein: 23, tags: ["protein","recovery"], ingredients: ["Greek yogurt — 200g", "Sattu — 1 tbsp", "Small banana", "Cinnamon, monk fruit"], recipe: "Blend everything smooth or eat banana on the side. Critical after heavy legs." },
+      { time: "7:45 PM", cat: "Dinner", thumb: "🍗", thumbCls: "dinner", title: "Grilled Chicken + Sautéed Veggies", desc: "Saturday's chicken meal — the only weekday-style protein hit.", calories: 360, protein: 38, tags: ["protein","belly"], ingredients: ["Chicken breast — 120g", "Capsicum, mushroom, broccoli, cauliflower — 200g total", "Garlic, herbs, lemon, black pepper", "Oil — 1 tsp total"], recipe: "Marinate chicken 20 min in yogurt + lemon + pepper + herbs. Grill in ½ tsp oil till cooked through, 5–6 min each side. Sauté veggies in remaining ½ tsp oil + garlic + pepper, 4 min." },
+      { time: "After dinner", cat: "Optional Drinks", thumb: "🍸", thumbCls: "drink", title: "1–2 Low-Cal Drinks", desc: "See Cheats tab for full recipes — cap at 2 drinks.", calories: 95, protein: 0, tags: ["cheat"], ingredients: ["Vodka soda lime — 30ml + 200ml soda + lemon (70 kcal)", "OR Skinny G&T — 30ml gin + 100ml diet tonic (75 kcal)"], recipe: "1 glass of plain water between each drink. Skip if you're going hard at the gym Sunday." }
+    ]
+  },
+  {
+    name: "Sunday", short: "Sun", type: "Rest Day · Cheat Lunch", typeClass: "rest",
+    totalCal: 1415, totalProtein: 81,
+    meals: [
+      MILK_COFFEE,
+      { time: "7:00 AM", cat: "Pre-breakfast", thumb: "🌱", thumbCls: "sprouts", title: "Sprouted Moong Chaat", desc: "Gut-reset Sunday — light, refreshing, hydrating.", calories: 50, protein: 4, tags: ["gut","protein","cooling"], ingredients: ["Sprouted moong — 2 tbsp (30g)", "Lemon juice, jeera powder, black salt, chaat masala", "Optional: chopped cucumber 30g"], recipe: "Mix sprouts with lemon, jeera, black salt. Add cucumber for extra crunch. (Sprout-at-home guide in Tools tab.)", alternatives: NUT_ALTS_BASE },
+      { time: "7:30 AM", cat: "Breakfast", thumb: "🫓", thumbCls: "breakfast", title: "Paneer Stuffed Paratha + Curd", desc: "Hearty Sunday breakfast — slow morning, satisfying meal.", calories: 290, protein: 18, tags: ["protein","calcium","gut"], ingredients: ["Whole wheat atta — 30g (one paratha)", "Low-fat paneer — 60g, crumbled", "Green chili, coriander, ginger, garam masala, ajwain", "Ghee — ½ tsp for cooking", "Curd — 80g + jeera powder + black salt"], recipe: "Mix paneer with chopped green chili + coriander + grated ginger + garam masala + salt. Knead atta with water + pinch of salt to soft dough. Roll a small disc, place paneer stuffing in centre, gather edges and seal, roll out gently to a 6-inch paratha. Cook on hot tava with ½ tsp ghee, 2 min each side till golden. Serve with seasoned curd." },
+      { time: "10:30 AM", cat: "Snack", thumb: "☕", thumbCls: "snack", title: "Coffee + Apple", desc: "Standard mid-morning combo.", calories: 80, protein: 1, tags: ["energy"], ingredients: ["Black coffee", "Small apple"], recipe: "Sip and snack." },
+      { time: "1:30 PM", cat: "Cheat Lunch", thumb: "🍛", thumbCls: "cheat", title: "Controlled Cheat Lunch", desc: "Pick ONE from Cheats tab — cap at 600 kcal.", calories: 580, protein: 28, tags: ["cheat"], ingredients: ["Pick ONE from Cheats tab", "Add cucumber-onion side salad", "Avoid creamy gravies + naan stacks", "Drink water before, not after"], recipe: "Plan it. Enjoy it. Don't apologize for it. Take a 15-min walk after — helps blood sugar." },
+      { time: "4:30 PM", cat: "Snack", thumb: "🥛", thumbCls: "snack", title: "Buttermilk + Fruit", desc: "Light afternoon reset.", calories: 100, protein: 3, tags: ["cooling","gut","summer"], ingredients: ["Buttermilk — 200ml + masala", "Small fruit (pear/apple)"], recipe: "Walk 15 min after to settle the cheat lunch." },
+      { time: "7:45 PM", cat: "Dinner", thumb: "🍲", thumbCls: "dinner", title: "Moong Soup + Paneer Tikka", desc: "Light gut-reset dinner.", calories: 230, protein: 23, tags: ["gut","protein","cooling"], ingredients: ["Yellow moong dal — 25g (dry)", "Ginger, jeera, hing, turmeric", "Low-fat paneer — 80g, cubed", "Curd 1 tbsp + tandoori masala for marinade", "Oil — ½ tsp"], recipe: "Pressure cook dal with hing + ginger + turmeric + 300ml water — blend smooth. Marinate paneer 15 min, pan-grill in ½ tsp oil till charred." }
+    ]
+  }
+];
+
+const woIllus = {
+  pull: '<svg class="illus" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M30 15h40v8H30z" fill="currentColor"/><path d="M48 23h4v18h-4z" fill="currentColor"/><circle cx="50" cy="50" r="8" fill="currentColor"/><path d="M30 55c0 0 8 5 20 5s20-5 20-5l-4 25h-32l-4-25z" fill="currentColor"/><path d="M20 58l10-6 4 8-10 6z" fill="currentColor"/><path d="M80 58l-10-6-4 8 10 6z" fill="currentColor"/></svg>',
+  push: '<svg class="illus" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="35" cy="35" r="7" fill="currentColor"/><path d="M30 42c0 0 5 4 12 4l8 12-10 8-5-10c-8-4-12-8-12-12 0-1 2-2 7-2z" fill="currentColor"/><rect x="55" y="30" width="35" height="6" rx="3" fill="currentColor"/><rect x="50" y="20" width="6" height="26" rx="2" fill="currentColor"/><rect x="89" y="20" width="6" height="26" rx="2" fill="currentColor"/><path d="M20 72h60v6H20z" fill="currentColor"/></svg>',
+  legs: '<svg class="illus" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="20" r="7" fill="currentColor"/><rect x="46" y="28" width="8" height="20" rx="2" fill="currentColor"/><path d="M40 48h20l-4 30-6-2-6 2-4-30z" fill="currentColor"/><path d="M20 30h60v6H20z" fill="currentColor"/><rect x="15" y="20" width="6" height="26" rx="2" fill="currentColor"/><rect x="79" y="20" width="6" height="26" rx="2" fill="currentColor"/><path d="M38 85h24v5H38z" fill="currentColor"/></svg>',
+  rest: '<svg class="illus" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="32" r="8" fill="currentColor"/><path d="M40 45c4-3 16-3 20 0v15c0 8-4 12-10 12s-10-4-10-12V45z" fill="currentColor"/><path d="M25 60c5-2 10-2 15-1v6c-5 1-10 2-15 1v-6z" fill="currentColor"/><path d="M75 60c-5-2-10-2-15-1v6c5 1 10 2 15 1v-6z" fill="currentColor"/><circle cx="20" cy="20" r="2" fill="currentColor" opacity="0.6"/><circle cx="80" cy="25" r="2" fill="currentColor" opacity="0.6"/><circle cx="85" cy="75" r="2" fill="currentColor" opacity="0.6"/><circle cx="15" cy="80" r="2" fill="currentColor" opacity="0.6"/></svg>'
+};
+
+const workouts = [
+  { day: "Monday", short: "Mon", type: "pull", label: "Pull · Back + Biceps", duration: "50–60 min",
+    exercises: [
+      { name: "Lat Pulldown", sets: "3 × 10–12", mod: "Use assisted machine, light weight first" },
+      { name: "Seated Cable Row", sets: "3 × 10–12", mod: "Squeeze shoulder blades, don't pull with arms" },
+      { name: "Dumbbell One-Arm Row", sets: "3 × 10/arm", mod: "Start 4–5kg, support free hand on bench" },
+      { name: "Face Pulls (rope)", sets: "3 × 12–15", mod: "Light weight, perfect form for rear delts" },
+      { name: "Dumbbell Bicep Curl", sets: "3 × 10–12", mod: "Start 4–5kg, no swinging" },
+      { name: "Hammer Curl", sets: "3 × 10", mod: "Same weight as bicep curl" },
+      { name: "Plank", sets: "3 × 30s", mod: "Knee plank if needed", core: true },
+      { name: "Dead Bug", sets: "3 × 10/side", mod: "Slow controlled, keep back flat", core: true }
+    ]},
+  { day: "Tuesday", short: "Tue", type: "push", label: "Push · Chest, Shoulders, Triceps", duration: "50–60 min",
+    exercises: [
+      { name: "Chest Press Machine", sets: "3 × 10–12", mod: "Machine before barbell bench" },
+      { name: "Incline Dumbbell Press", sets: "3 × 10", mod: "Start 5kg dumbbells" },
+      { name: "Seated Shoulder Press", sets: "3 × 10", mod: "Start 4kg, seated for back support" },
+      { name: "Lateral Raise", sets: "3 × 12", mod: "3kg dumbbells, slow tempo" },
+      { name: "Tricep Pushdown (rope)", sets: "3 × 12", mod: "Elbows pinned at sides" },
+      { name: "Knee Push-ups", sets: "3 × 8–10", mod: "Progress to full when easy" },
+      { name: "Bicycle Crunches", sets: "3 × 20", mod: "10 each side, slow", core: true },
+      { name: "Side Plank", sets: "2 × 20s/side", mod: "Knee variation if needed", core: true }
+    ]},
+  { day: "Wednesday", short: "Wed", type: "legs", label: "Legs", duration: "55–65 min",
+    exercises: [
+      { name: "Goblet Squat", sets: "3 × 12", mod: "Hold 5kg dumbbell at chest" },
+      { name: "Leg Press", sets: "3 × 12", mod: "Start low weight, full range of motion" },
+      { name: "Walking Lunges", sets: "3 × 10/leg", mod: "Bodyweight first 2 weeks" },
+      { name: "Leg Curl Machine", sets: "3 × 12", mod: "Hamstring focus, controlled" },
+      { name: "Leg Extension Machine", sets: "3 × 12", mod: "Quad focus, squeeze at top" },
+      { name: "Standing Calf Raise", sets: "3 × 15", mod: "Bodyweight, hold dumbbells when easy" },
+      { name: "Hanging Knee Raise", sets: "3 × 10", mod: "Lying leg raise if can't hang yet", core: true },
+      { name: "Mountain Climbers", sets: "3 × 20", mod: "Steady pace, hips down", core: true }
+    ]},
+  { day: "Thursday", short: "Thu", type: "pull", label: "Pull · Variation Day", duration: "50–60 min",
+    exercises: [
+      { name: "Assisted Pull-up", sets: "3 × 6–8", mod: "Use assist machine, full range" },
+      { name: "Cable Row (wide grip)", sets: "3 × 12", mod: "Different angle from Monday" },
+      { name: "T-Bar Row", sets: "3 × 10", mod: "Start light, brace core" },
+      { name: "Reverse Pec Deck", sets: "3 × 12", mod: "Rear delt isolation" },
+      { name: "Preacher Curl", sets: "3 × 10", mod: "Machine or bench, full bicep stretch" },
+      { name: "Concentration Curl", sets: "3 × 10/arm", mod: "Slow, peak squeeze at top" },
+      { name: "Russian Twists", sets: "3 × 20", mod: "Bodyweight or 2kg plate", core: true },
+      { name: "Lying Leg Raises", sets: "3 × 12", mod: "Bent knees if straight is too hard", core: true }
+    ]},
+  { day: "Friday", short: "Fri", type: "push", label: "Push · Variation Day", duration: "50–60 min",
+    exercises: [
+      { name: "Incline Chest Press Machine", sets: "3 × 10", mod: "Upper chest focus" },
+      { name: "Pec Deck / Cable Fly", sets: "3 × 12", mod: "Light weight, full stretch" },
+      { name: "Arnold Press", sets: "3 × 10", mod: "Start 4kg dumbbells" },
+      { name: "Front Raise", sets: "3 × 10", mod: "3kg, alternate arms" },
+      { name: "Overhead Tricep Extension", sets: "3 × 10", mod: "Single dumbbell, 5kg, behind head" },
+      { name: "Diamond Push-ups (knees)", sets: "3 × 8", mod: "Tricep emphasis, hands close" },
+      { name: "Plank Shoulder Taps", sets: "3 × 20", mod: "Knees if needed", core: true },
+      { name: "Crunches", sets: "3 × 15", mod: "Slow tempo, chin off chest", core: true }
+    ]},
+  { day: "Saturday", short: "Sat", type: "legs", label: "Legs + Steam", duration: "55–65 min + steam",
+    exercises: [
+      { name: "Romanian Deadlift", sets: "3 × 10", mod: "Light dumbbells, focus hamstring stretch" },
+      { name: "Bulgarian Split Squat", sets: "3 × 8/leg", mod: "Bodyweight first, add dumbbells later" },
+      { name: "Hip Thrust (bench)", sets: "3 × 12", mod: "Glute focus, 2s squeeze at top" },
+      { name: "Seated Calf Raise", sets: "3 × 15", mod: "Add weight when 15 is easy" },
+      { name: "Cable Glute Kickback", sets: "3 × 12/leg", mod: "Slow controlled" },
+      { name: "Hollow Hold", sets: "3 × 20s", mod: "Tucked variation if needed", core: true },
+      { name: "Reverse Crunch", sets: "3 × 12", mod: "Lower abs focus", core: true },
+      { name: "Steam Room", sets: "10–12 min", mod: "Hydrate before & after, don't exceed 15 min" }
+    ]},
+  { day: "Sunday", short: "Sun", type: "rest", label: "Rest", duration: "Recovery",
+    exercises: [
+      { name: "Easy walk", sets: "30–40 min", mod: "After breakfast, gentle pace" },
+      { name: "Light stretching / yoga", sets: "10 min", mod: "Full body, focus tight areas" },
+      { name: "Foam roll", sets: "10 min", mod: "Quads, glutes, lats, calves" },
+      { name: "Hydration day", sets: "3.5L target", mod: "Sip throughout the day" }
+    ]}
+];
+
+const cheats1 = [
+  { veg: true,  thumb: "🧀", thumbCls: "paneer",  title: "Tandoori Paneer Plate", desc: "150g grilled paneer tikka + 1 small naan + green salad + kachumber.", cal: 490, pro: 24, day: "Fri/Sat" },
+  { veg: true,  thumb: "🍕", thumbCls: "pizza",   title: "Thin-Crust Paneer Pizza", desc: "1 thin-crust slice (200g) with garden salad. No extra cheese.", cal: 450, pro: 18, day: "Fri/Sat" },
+  { veg: false, thumb: "🍗", thumbCls: "chicken", title: "Tandoori Chicken Plate", desc: "2 pieces (drumstick + thigh, skin off) + 1 small naan + green salad.", cal: 520, pro: 35, day: "Sat only" }
+];
+
+const cheats2 = [
+  { veg: true,  thumb: "🥘", thumbCls: "curry",   title: "Paneer Butter Masala Bowl", desc: "Small portion (100g paneer) + 1 butter naan. Eat the salad first.", cal: 600, pro: 22, day: "Sun" },
+  { veg: false, thumb: "🍚", thumbCls: "biryani", title: "Chicken Biryani Bowl", desc: "Medium bowl (200g rice + 100g chicken) + cucumber raita on the side.", cal: 580, pro: 28, day: "Sun" },
+  { veg: false, thumb: "🍛", thumbCls: "tikka",   title: "Chicken Tikka Masala Set", desc: "2 tikka pieces + small jeera rice (80g cooked) + raita.", cal: 560, pro: 32, day: "Sun" }
+];
+
+const drinks = [
+  { num: "01", thumb: "🍸", thumbCls: "vodka",   title: "Vodka Soda Lime", meta: "~70 kcal · 0 sugar", recipe: "30ml vodka + 200ml soda water + lemon wedge + 4 mint leaves + ice. Sip slowly, alternate with plain water." },
+  { num: "02", thumb: "🍹", thumbCls: "gin",     title: "Skinny G&T",       meta: "~75 kcal · 0 sugar", recipe: "30ml gin + 100ml diet/zero tonic + lemon + cucumber slice + ice. Diet tonic is non-negotiable — regular adds 90+ kcal." },
+  { num: "03", thumb: "🥃", thumbCls: "whiskey", title: "Whiskey, Neat",    meta: "~70 kcal · 0 sugar", recipe: "30ml whiskey + ice + splash of water. Skip the cola — adds 100+ kcal. Sip slowly, savour." }
+];
+
+let currentDay = 0;
+let completedMeals = {};
+
+function loadProgress() { try { const s = localStorage.getItem('protocol_progress_v4'); if (s) completedMeals = JSON.parse(s); } catch (e) {} }
+function saveProgress() { try { localStorage.setItem('protocol_progress_v4', JSON.stringify(completedMeals)); } catch (e) {} }
+function resetProgress() {
+  if (!confirm('Reset all meal checks?')) return;
+  completedMeals = {};
+  try { localStorage.removeItem('protocol_progress_v4'); } catch (e) {}
+  renderDay();
+}
+function getTodayIndex() { const day = new Date().getDay(); return day === 0 ? 6 : day - 1; }
+
+function renderDayStrip() {
+  const strip = document.getElementById('day-strip');
+  const todayIdx = getTodayIndex();
+  strip.innerHTML = days.map((d, i) => `
+    <div class="day-pill ${i === currentDay ? 'active' : ''} ${i === todayIdx ? 'today' : ''}" data-day="${i}">
+      <span class="today-dot"></span>
+      <div class="num">${i + 1}</div>
+      <div class="name">${d.short}</div>
+    </div>
+  `).join('');
+  strip.querySelectorAll('.day-pill').forEach(p => {
+    p.addEventListener('click', () => {
+      currentDay = parseInt(p.dataset.day);
+      renderDay();
+      renderDayStrip();
+    });
+  });
+}
+
+function renderDay() {
+  const d = days[currentDay];
+  document.getElementById('day-summary').dataset.type = d.typeClass;
+  document.getElementById('day-title').innerHTML = `<em>${d.name}.</em>`;
+  document.getElementById('day-type').className = `day-type ${d.typeClass}`;
+  document.getElementById('day-type-text').textContent = d.type;
+  document.getElementById('cal-num').textContent = d.totalCal.toLocaleString();
+  document.getElementById('pro-num').textContent = d.totalProtein + 'g';
+
+  const totalMeals = d.meals.length;
+  let doneMeals = 0;
+  let consumedCal = 0;
+  d.meals.forEach((m, i) => {
+    if (completedMeals[`${currentDay}_${i}`]) {
+      doneMeals++;
+      consumedCal += m.calories;
+    }
+  });
+  const compText = doneMeals > 0 ? `<strong>${doneMeals}/${totalMeals}</strong> meals logged · ${consumedCal} kcal eaten so far` : `${totalMeals} meals · check them off as you go`;
+  document.getElementById('completion-text').innerHTML = compText;
+  document.getElementById('prog-fill').style.width = (doneMeals/totalMeals*100) + '%';
+  document.getElementById('prog-count').textContent = `${doneMeals}/${totalMeals}`;
+
+  const tl = document.getElementById('timeline');
+  tl.innerHTML = d.meals.map((m, i) => {
+    const key = `${currentDay}_${i}`;
+    const done = completedMeals[key];
+    return `
+      <div class="meal ${done ? 'done' : ''}" data-meal="${i}">
+        <div class="meal-head" onclick="toggleMeal(${i})">
+          <div class="meal-thumb ${m.thumbCls}">${m.thumb}</div>
+          <div class="meal-meta">
+            <div class="meal-time-row">
+              <span class="meal-time">${m.time}</span>
+              ${m.tags.map(t => `<span class="tag ${t}">${t}</span>`).join('')}
+            </div>
+            <div class="meal-title">${m.title}</div>
+            <div class="meal-desc">${m.desc}</div>
+          </div>
+          <div class="meal-macros">
+            <div class="cal">${m.calories}</div>
+            <div class="cal-l">kcal</div>
+            <div class="pro">${m.protein}g P</div>
+          </div>
+        </div>
+        <div class="meal-body">
+          <div class="meal-sect">
+            <h4>Ingredients</h4>
+            <ul class="ing-list">
+              ${m.ingredients.map(ing => `<li>${ing}</li>`).join('')}
+            </ul>
+          </div>
+          <div class="meal-sect">
+            <h4>How to make it</h4>
+            <div class="recipe-box">${m.recipe}</div>
+          </div>
+          ${m.alternatives ? `
+          <div class="meal-sect">
+            <h4>Or swap with</h4>
+            <ul class="alt-list">
+              ${m.alternatives.map(a => `<li>${a}</li>`).join('')}
+            </ul>
+          </div>` : ''}
+          <button class="meal-check ${done ? 'done' : ''}" onclick="toggleDone(${i}, event)">
+            <span class="tick">${done ? '✓' : ''}</span>
+            ${done ? 'Completed' : 'Mark complete'}
+          </button>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function toggleMeal(i) {
+  const card = document.querySelector(`.meal[data-meal="${i}"]`);
+  card.classList.toggle('open');
+}
+
+function toggleDone(i, e) {
+  e.stopPropagation();
+  const key = `${currentDay}_${i}`;
+  if (completedMeals[key]) delete completedMeals[key];
+  else completedMeals[key] = true;
+  saveProgress();
+  renderDay();
+  setTimeout(() => {
+    const card = document.querySelector(`.meal[data-meal="${i}"]`);
+    if (card) card.classList.add('open');
+  }, 10);
+}
+
+function renderWorkouts() {
+  const grid = document.getElementById('workout-grid');
+  grid.innerHTML = workouts.map((w, i) => `
+    <div class="wo-card" data-type="${w.type}">
+      <div class="wo-hero">
+        <div class="wo-hero-meta">
+          <div class="wo-day-num">${i + 1}</div>
+          <div class="wo-day-name">${w.day}</div>
+          <div class="wo-type-name">${w.label}</div>
+        </div>
+        ${woIllus[w.type] || ''}
+      </div>
+      <div class="wo-body">
+        <div class="wo-meta-row">
+          <div class="wo-meta-pill"><strong>${w.duration}</strong></div>
+          <div class="wo-meta-pill">${w.exercises.length} moves</div>
+          ${w.type !== 'rest' ? `<div class="wo-meta-pill">+ warm-up & cool-down</div>` : ''}
+        </div>
+        <ul class="ex-list">
+          ${w.exercises.map(ex => `
+            <li class="ex-item">
+              <div class="ex-row">
+                <span class="ex-name">${ex.name}${ex.core ? '<span class="core-flag">core</span>' : ''}</span>
+                <span class="ex-sets">${ex.sets}</span>
+              </div>
+              <div class="ex-mod">${ex.mod}</div>
+            </li>
+          `).join('')}
+        </ul>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderCheats() {
+  const cheatHTML = c => `
+    <div class="cheat-option ${c.veg ? 'v' : 'nv'}">
+      <div class="cheat-thumb ${c.thumbCls}">${c.thumb}</div>
+      <div class="cheat-body">
+        <div class="veg-flag"></div>
+        <h4>${c.title}</h4>
+        <div class="desc">${c.desc}</div>
+        <div class="stats">
+          <span class="stat-pill k">${c.cal} kcal</span>
+          <span class="stat-pill p">${c.pro}g protein</span>
+          <span class="stat-pill d">${c.day}</span>
+        </div>
+      </div>
+    </div>
+  `;
+  document.getElementById('cheat-1').innerHTML = cheats1.map(cheatHTML).join('');
+  document.getElementById('cheat-2').innerHTML = cheats2.map(cheatHTML).join('');
+  document.getElementById('drinks').innerHTML = drinks.map(d => `
+    <div class="drink-card">
+      <div class="drink-thumb ${d.thumbCls}">
+        <span class="drink-num">${d.num}</span>
+        ${d.thumb}
+      </div>
+      <div class="drink-body">
+        <h4>${d.title.split(' ').slice(0,-1).join(' ')} <em>${d.title.split(' ').slice(-1)}</em></h4>
+        <div class="meta">${d.meta}</div>
+        <div class="recipe-text">${d.recipe}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+document.querySelectorAll('#nav button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('#nav button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+    document.getElementById(btn.dataset.tab).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+});
+
+loadProgress();
+currentDay = getTodayIndex();
+renderDayStrip();
+renderDay();
+renderWorkouts();
+renderCheats();
+</script>
+</body>
+</html>
